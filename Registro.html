@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Registro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>Registro</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="Login.html">Iniciar sesión</a></li>
+            <li><a href="Registro.html">Registrarse</a></li>
+        </ul>
+    </header>
+    <div class="form-container">
+        <form id="registro-form"  method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" id="nombres" name="nombres" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="estatura">Estatura (CM):</label>
+                    <input type="number" id="estatura" name="estatura" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="peso">Peso (KG):</label>
+                    <input type="number" id="peso" name="peso" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="">Seleccione</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="rehabilitacion">¿Está en rehabilitación física?</label>
+                    <select id="rehabilitacion" name="rehabilitacion" onchange="toggleFields()">
+                        <option value="">Seleccione</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" id="nivel-container">
+                <div class="form-group">
+                    <label for="nivel_entrenamiento">Nivel de entrenamiento:</label>
+                    <select id="nivel_entrenamiento" name="nivel_entrenamiento">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Básico</option>
+                        <option value="2">Medio</option>
+                        <option value="3">Avanzado</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row" id="objetivo-container">
+                <div class="form-group">
+                    <label for="objetivo">Objetivo:</label>
+                    <select id="objetivo" name="objetivo">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Definición</option>
+                        <option value="2">Mantenimiento</option>
+                        <option value="3">Hipertrofia</option>
+                        <option value="4">Fuerza</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="authorization">
+                    <br>
+                    <input type="checkbox" id="authorization" name="authorization" required>
+                    Acepto que mis datos sean recopilados y procesados.
+                </label>
+            </div>
+        </form>
+        <br>
+        <div class="centrar">
+            <button class="boton-crear" onclick="crearCuenta()">Crear cuenta</button>
+            <button class="boton-cancelar" onclick="confirmarCancelar()">Cancelar</button>
+        </div>
+    </div>
+
+
+<div id="messageModal" class="message-modal">
+    <div class="centrar">
+    <div class="message-modal-content">
+        <span class="close" onclick="closeMessageModal()">&times;</span>
+        <p id="messageText"></p>
+        <div class="message-buttons">
+            <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+            <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+      </div>
+        </div>
+    </div>
+</div>
+
+    <div id="cancelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>¿Estás seguro de que deseas cancelar?</p>
+            <div class="modal-buttons">
+                <button class="confirm-btn" onclick="cancelar()">Sí, cancelar</button>
+                <button class="cancel-btn" onclick="closeModal()">No, regresar</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function toggleFields() {
+            const rehabilitacion = document.getElementById('rehabilitacion').value;
+            const objetivoContainer = document.getElementById('objetivo-container');
+            const nivelContainer = document.getElementById('nivel-container');
+            
+            if (rehabilitacion === '1') {
+                objetivoContainer.style.display = 'none';
+
+                nivelContainer.style.display = 'none';
+            } else {
+                objetivoContainer.style.display = 'block';
+                nivelContainer.style.display = 'block';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registro-form');
+    
+    form.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') { 
+            event.preventDefault(); 
+            crearCuenta(); 
+        }
+    });
+});
+ 
+    function crearCuenta() {
+    const form = document.getElementById('registro-form');
+
+    if (form.checkValidity()) {
+    
+        const usuarioData = {
+            persona: {
+                id_rol: 1, 
+                nombres: document.getElementById('nombres').value,
+                apellidos: document.getElementById('apellidos').value,
+                correo: document.getElementById('correo').value,
+                contrasena: document.getElementById('contrasena').value,
+                fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+                genero: document.getElementById('genero').value,
+            },
+            estatura: document.getElementById('estatura').value,
+            peso: document.getElementById('peso').value,
+            rehabilitacion: document.getElementById('rehabilitacion').value,
+        };
+
+
+        if (usuarioData.rehabilitacion == 1) {
+            usuarioData.id_objetivo = 5;
+            usuarioData.id_nivel_entrenamiento = 1;
+        } else {
+            usuarioData.id_nivel_entrenamiento = document.getElementById('nivel_entrenamiento').value;
+            usuarioData.id_objetivo = document.getElementById('objetivo').value;
+        }
+
+
+        console.log('usuarioData:', usuarioData); 
+        fetch('https://localhost:7007/Usuario/Registrar', { 
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(usuarioData)
+        })
+        .then(response => {
+            if (response.ok) {
+                showMessage('¡Cuenta creada exitosamente!', 'success');
+                setTimeout(() => {
+                    window.location.href = 'Login.html';
+                }, 2000);
+            } else {                           
+                showMessage('El correo ya esta registrado', 'error');
+            }
+        })
+        .catch(error => {
+            console.log('Fetch error:', error); // Depuración
+            showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
+        });
+    } else {
+        showMessage('Por favor, completa todos los campos requeridos.', 'error');
+    }
+}
+
+
+        function showMessage(message, type) {
+            const messageModal = document.getElementById('messageModal');
+            const messageText = document.getElementById('messageText');
+            const successBtn = document.getElementById('successBtn');
+            const errorBtn = document.getElementById('errorBtn');
+            
+            messageText.textContent = message;
+            if (type === 'success') {
+                successBtn.style.display = 'block';
+                errorBtn.style.display = 'none';
+            } else {
+                successBtn.style.display = 'none';
+                errorBtn.style.display = 'block';
+            }
+            
+            messageModal.style.display = 'block';
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+
+      
+        function confirmarCancelar() {
+            document.getElementById('cancelModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('cancelModal').style.display = 'none';
+        }
+
+        function cancelar() {
+            window.location.href = 'index.html'; 
+        }
+
+    </script>
+</body>
+</html>

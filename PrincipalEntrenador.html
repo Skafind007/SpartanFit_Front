@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>SOY ENTRENADOR</h1>  
+
+  <script>
+ 
+ 
+    //ESTAS SON LAS VARIABLES DE SESION ENTRENADOR
+       window.onload = function() {
+           const userRole = localStorage.getItem('userRole');
+   
+           if (userRole !== '2') {
+            window.location.href = 'Error.html'; 
+           
+           }
+       };   
+       function CerrarSesion() {
+           localStorage.removeItem('userRole');
+         
+           window.location.href = 'Login.html'; 
+       }
+     </script>
+</html>

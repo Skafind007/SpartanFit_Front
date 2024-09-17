@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="Login.html">Iniciar sesión</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+   <h1>SOY UN USUARIO</h1> 
+   <script>
+ 
+ 
+ //ESTAS SON LAS VARIABLES DE SESION USUARIO
+
+ window.onload = function() {
+           const userRole = localStorage.getItem('userRole');
+   
+           if (userRole !== '1') {
+            window.location.href = 'Error.html'; 
+           
+           }
+       };   
+       function CerrarSesion() {
+           localStorage.removeItem('userRole');
+           
+           window.location.href = 'Login.html'; 
+       }
+     </script>
+</html>
+  </script>
+</body>
+</html>

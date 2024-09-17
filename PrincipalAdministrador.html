@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <H1>soy admin pa</H1>
+    <script>
+ 
+ 
+        //ESTAS SON LAS VARIABLES DE SESION ADMIN
+  window.onload = function() {
+           const userRole = localStorage.getItem('userRole');
+   
+           if (userRole !== '3') {
+            window.location.href = 'Error.html'; 
+           
+           }
+       };   
+       function CerrarSesion() {
+           localStorage.removeItem('userRole');
+           localStorage.removeItem('userCorreo');
+           window.location.href = 'Login.html'; 
+       }
+     </script>
+</html>
