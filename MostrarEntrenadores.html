@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="MostrarUsuario.css">
+    <link rel="stylesheet" href="indexacion.css">
+    <title>Usuarios</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarUsuario.html">Usuarios</a></li>
+            <li><a href="MostrarEntrenadores.html">Entrenadores</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    <div class="centrarT">
+        <table id="entrenadores" class="table" border="1">
+            <thead class="encabezado">
+                <tr>
+                    <th class="nombres">Nombres</th>
+                    <th class="nombres">Apellidos</th>
+                    <th class="nombres">Correo</th>
+                    <th class="nombres">Género</th>
+                    <th class="nombres">Fecha de Nacimiento</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="contenido">
+        
+            </tbody>
+        </table>
+        
+     
+    </div>
+   
+    <div class="centrar">
+        <button type="button" class="botonI" onclick="Crear()">Registrar Entrenador</button>
+        <br><br>
+        <button type="button" class="botonI" onclick="CrearPDF()">Descargar Reporte</button>
+    </div>
+    
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="cancel-btn" id="cancelBtn" onclick="closeMessageModal()">Cancelar</button>
+                    <button class="error-btn" id="confirmBtn">Eliminar</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div id="messageModalError" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModalError()">&times;</span>
+            <p id="errorMessageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="success-btn" id="okBtn" onclick="closeMessageModalError()">OK</button>  
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function Crear(){
+            window.location.href='AgregarEntrenador.html';
+        }
+
+        let entrenadoresData = [];
+
+     
+        fetch('https://localhost:7007/api/Administrador/ListEntrenadores')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta de la API');
+            }
+            return response.json();
+        })
+        .then(data => {
+            entrenadoresData = data;
+            const entrenadoresTable = document.getElementById('entrenadores').getElementsByTagName('tbody')[0];
+            let html = "";
+            data.forEach((persona, index) => {
+                let fechaNacimiento = persona?.fecha_nacimiento;
+                if (fechaNacimiento) {
+                    try {
+                        const [fechaParte] = fechaNacimiento.split(' ');
+                        fechaNacimiento = fechaParte; 
+                    } catch (error) {
+                        console.error('Error al procesar la fecha:', error);
+                        fechaNacimiento = 'Fecha no válida';
+                    }
+                } else {
+                    fechaNacimiento = 'Fecha no disponible';
+                }
+
+                html += `<tr>
+                            <td>${persona?.nombres}</td>
+                            <td>${persona?.apellidos}</td>
+                            <td>${persona?.correo}</td>
+                            <td>${persona?.genero}</td>
+                            <td>${fechaNacimiento}</td>                          
+                            <td>
+                                <img src="usuario (1).png" onclick='guardarDatosEntrenador(${index})'>
+                            </td>
+                            <td>
+                                <img src="basura.png" onclick='EliminarEntrenador(${persona.id_usuario})'>
+                            </td>
+                         </tr>`;
+            });
+
+            entrenadoresTable.innerHTML = html;
+
+            $(document).ready(function() {
+                $('#entrenadores').DataTable({
+                    "paging": true,         
+                    "searching": true,     
+                    "ordering": true,    
+                    "info": true,         
+                    "lengthMenu": [5, 10, 25, 50],  
+                    "drawCallback": function() {
+                        $('#tablaEjercicios').css('width', '50%');
+                    }
+                });
+            });
+        })
+        .catch(error => {
+            console.error('Error en la petición:', error);
+        });
+
+      
+        function guardarDatosEntrenador(index) {
+            const entrenador = entrenadoresData[index];
+            localStorage.setItem('entrenadorDatos', JSON.stringify(entrenador));     
+            window.location.href = 'ActualizarEntrenador.html'; 
+        }
+
+       
+        function showMessage(message, onConfirm) {
+            const messageModal = document.getElementById('messageModal');
+            const messageText = document.getElementById('messageText');
+            const confirmBtn = document.getElementById('confirmBtn');
+            
+            messageText.textContent = message;
+
+            confirmBtn.onclick = function() {
+                if (typeof onConfirm === 'function') {
+                    onConfirm();
+                }
+                closeMessageModal();
+            };
+            
+            messageModal.style.display = 'flex';
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+
+        // Mostrar modal de error
+        function showMessageError(message) {
+            const messageModalError = document.getElementById('messageModalError');
+            const errorMessageText = document.getElementById('errorMessageText');
+            
+            errorMessageText.textContent = message;
+
+            messageModalError.style.display = 'flex';
+        }
+
+        function closeMessageModalError() {
+            document.getElementById('messageModalError').style.display = 'none';
+        }
+
+       
+        function EliminarEntrenador(id_usuario) {
+            showMessage("¿Estás seguro de que deseas eliminar este entrenador?", function() {
+                fetch(`https://localhost:7007/api/Administrador/EliminarEntrenador/${id_usuario}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al eliminar el entrenador');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    showMessageError("Entrenador eliminado correctamente.");
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showMessageError("Hubo un error al eliminar el entrenador.");
+                });
+            });
+        }
+
+   //VARIABLES DE SESION ADMIN    
+        function CerrarSesion() {
+            deleteCookie('userRole');
+            localStorage.removeItem('entrenadorDatos');
+            window.location.href = 'Login.html'; 
+        }
+
+     
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+        function deleteCookie(name) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+
+        window.onload = function() {
+            const userRole = getCookie('userRole');
+
+            if (userRole !== '3') {
+                window.location.href = 'Error.html'; 
+            }
+        };
+    </script>
+</body>
+</html>
