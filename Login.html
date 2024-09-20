@@ -49,63 +49,84 @@
             <p id="messageText"></p>
             <div class="message-buttons">
                 <div class="centrar">
-                           <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
-                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>    
+                    <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                    <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
                 </div>
-     
             </div>
         </div>
     </div>
     <script>
-          
-          document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('login-form');
-    
-    form.addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') { 
-            event.preventDefault(); 
-            IniciarSesion(); 
-        }
-    });
-});
-async function redireccionar() {
-    const form = document.getElementById('login-form'); 
-    const correo = document.getElementById('correo').value;
-
-    if (form.checkValidity()) { 
-        try {
-           
-            const response = await fetch(`https://localhost:7007/api/Persona/Traer-Datos-Personas?correo=${encodeURIComponent(correo)}`, {
-                method: 'GET'
-            });
-          
-            if (response.ok) {
-                const result = await response.json(); 
-                console.log(result);
-                if (result.id_rol === 1) {
-                    window.location.href = 'PrincipalUsuario.html';
-                    localStorage.setItem('userRole', result.id_rol); 
-                } else if (result.id_rol === 2) {
-                    window.location.href = 'PrincipalEntrenador.html';
-                    localStorage.setItem('userRole', result.id_rol); 
-                } else  if (result.id_rol==3){
-                    window.location.href='PrincipalAdministrador.html'; 
-                    localStorage.setItem('userRole', result.id_rol);
-                   
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('login-form');
+            form.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); 
+                    IniciarSesion(); 
                 }
+            });
+        });
 
-            } else {
-                const error = await response.text();
-                showMessage(`Error: ${error}`, 'error');
+  
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                const date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
             }
-        } catch (error) {
-            console.error('Fetch error:', error);
-            showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
         }
-    } else {
-        showMessage('Por favor, completa todos los campos requeridos.', 'error');
-    }
-}
+
+      
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+
+       
+        function deleteCookie(name) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+
+        async function redireccionar() {
+            const form = document.getElementById('login-form'); 
+            const correo = document.getElementById('correo').value;
+
+            if (form.checkValidity()) { 
+                try {
+                    const response = await fetch(`https://localhost:7007/api/Persona/Traer-Datos-Personas?correo=${encodeURIComponent(correo)}`, {
+                        method: 'GET'
+                    });
+                    
+                    if (response.ok) {
+                        const result = await response.json();
+                        console.log(result);
+
+                  
+                        if (result.id_rol === 1) {
+                            window.location.href = 'PrincipalUsuario.html';
+                            setCookie('userRole', result.id_rol, 7); 
+                        } else if (result.id_rol === 2) {
+                            window.location.href = 'PrincipalEntrenador.html';
+                            setCookie('userRole', result.id_rol, 7);
+                        } else if (result.id_rol === 3) {
+                            window.location.href = 'PrincipalAdministrador.html';
+                            setCookie('userRole', result.id_rol, 7);
+                        }
+
+                    } else {
+                        const error = await response.text();
+                        showMessage(`Error: ${error}`, 'error');
+                    }
+                } catch (error) {
+                    console.error('Fetch error:', error);
+                    showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
+                }
+            } else {
+                showMessage('Por favor, completa todos los campos requeridos.', 'error');
+            }
+        }
 
         async function IniciarSesion() {
             const form = document.getElementById('login-form');
@@ -120,10 +141,8 @@ async function redireccionar() {
                     });
 
                     if (response.ok) {
-                        const result = await response.text(); 
-                    
-                       var rol= redireccionar();
-                      
+                        const result = await response.text();
+                        var rol = redireccionar();
                     } else {
                         const error = await response.text();
                         showMessage(`Error: ${error}`);
@@ -136,10 +155,9 @@ async function redireccionar() {
                 showMessage('Por favor, completa todos los campos requeridos.');
             }
         }
+
         function showMessage(message, type) {
             const messageModal = document.getElementById('messageModal');
-           
-            
             messageText.textContent = message;
             if (type === 'success') {
                 successBtn.style.display = 'block';
@@ -148,7 +166,6 @@ async function redireccionar() {
                 successBtn.style.display = 'none';
                 errorBtn.style.display = 'block';
             }
-            
             messageModal.style.display = 'flex';
         }
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Principal Usuario</title>
 </head>
 <body>
     <header>
@@ -14,27 +14,32 @@
             <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
         </ul>
     </header>
-   <h1>SOY UN USUARIO</h1> 
-   <script>
- 
- 
- //ESTAS SON LAS VARIABLES DE SESION USUARIO
+    <h1>SOY UN USUARIO</h1> 
+    <script>
+    //VARIABLES DE SESION 
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
 
- window.onload = function() {
-           const userRole = localStorage.getItem('userRole');
-   
-           if (userRole !== '1') {
-            window.location.href = 'Error.html'; 
-           
-           }
-       };   
-       function CerrarSesion() {
-           localStorage.removeItem('userRole');
-           
-           window.location.href = 'Login.html'; 
-       }
-     </script>
-</html>
-  </script>
+     
+        function deleteCookie(name) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        }
+
+        window.onload = function() {
+            const userRole = getCookie('userRole');
+
+            if (userRole !== '1') {
+                window.location.href = 'Error.html'; 
+            }
+        };
+
+        function CerrarSesion() {
+            deleteCookie('userRole');
+            window.location.href = 'Login.html'; 
+        }
+    </script>
 </body>
 </html>

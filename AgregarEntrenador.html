@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="AgregarEntrenador.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>RegistroEntrenador</title>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarUsuario.html">Usuarios</a></li>
+            <li><a href="MostrarEntrenadores.html">Entrenadores</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    
+    <section>
+    <div class="form-container">
+        <form id="registroEntrenador-form"  method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombres">Nombres:</label>
+                    <input type="text" id="nombres" name="nombres" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos:</label>
+                    <input type="text" id="apellidos" name="apellidos" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="correo">Correo:</label>
+                    <input type="email" id="correo" name="correo" required>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="contrasena">Contraseña:</label>
+                    <input type="password" id="contrasena" name="contrasena" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+                </div>
+                <br>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group">
+                    <label for="genero">Género:</label>
+                    <select id="genero" name="genero" required>
+                        <option value="">Seleccione</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="masculino">Masculino</option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="centrar">
+            <button type="button" class="botonI" onclick="RegistrarEntrenador()">Registrar</button>
+        </div>
+    </div>
+
+    </section>
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="cancelModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>¿Estás seguro de que deseas cancelar?</p>
+            <div class="message-buttons">
+                <button class="confirm-btn" onclick="cancelar()">Sí, cancelar</button>
+                <button class="cancel-btn" onclick="closeModal()">No, regresar</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registroEntrenador-form');
+            
+            form.addEventListener('keypress', function(event) {
+                if (event.key === 'Enter') { 
+                    event.preventDefault(); 
+                    RegistrarEntrenador(); 
+                }
+            });
+        });
+     
+        function RegistrarEntrenador() {
+            const form = document.getElementById('registroEntrenador-form');
+        
+            if (form.checkValidity()) {
+                const EntrenadorData = {
+                    persona: {
+                        id_rol: 2,
+                        nombres: document.getElementById('nombres').value,
+                        apellidos: document.getElementById('apellidos').value,
+                        correo: document.getElementById('correo').value,
+                        contrasena: document.getElementById('contrasena').value,
+                        fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
+                        genero: document.getElementById('genero').value,         
+                    }
+                };
+        
+                console.log('EntrenadorData:', EntrenadorData); 
+                fetch('https://localhost/api/Entrenadores', { 
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(EntrenadorData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        showMessage('¡Entrenador creado exitosamente!', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'Login.html';
+                        }, 2000);
+                    } else {                           
+                        showMessage('El correo ya está registrado', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.log('Fetch error:', error);
+                    showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
+                });
+            } else {
+                showMessage('Por favor, completa todos los campos requeridos.', 'error');
+            }
+        }
+        
+        function showMessage(message, type) {
+            const messageModal = document.getElementById('messageModal');
+            const messageText = document.getElementById('messageText');
+            const successBtn = document.getElementById('successBtn');
+            const errorBtn = document.getElementById('errorBtn');
+            
+            messageText.textContent = message;
+            if (type === 'success') {
+                successBtn.style.display = 'block';
+                errorBtn.style.display = 'none';
+            } else {
+                successBtn.style.display = 'none';
+                errorBtn.style.display = 'block';
+            }
+            
+            messageModal.style.display = 'flex'; // Mostrar el modal
+        }
+
+        function closeMessageModal() {
+            document.getElementById('messageModal').style.display = 'none';
+        }
+      
+        function confirmarCancelar() {
+            document.getElementById('cancelModal').style.display = 'flex'; // Mostrar el modal de cancelación
+        }
+
+        function closeModal() {
+            document.getElementById('cancelModal').style.display = 'none';
+        }
+
+        function cancelar() {
+            window.location.href = 'MostrarEntrenadores.html'; 
+        }
+    </script>
+</body>
+</html>

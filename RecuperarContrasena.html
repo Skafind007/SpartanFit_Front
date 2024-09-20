@@ -55,6 +55,16 @@
     </div>
           
           <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contrasena-form');
+    
+    form.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') { 
+            event.preventDefault(); 
+            BuscarCorreo(); 
+        }
+    });
+    });
         async function Restablecer() {
             const form = document.getElementById('contrasena-form');
 
@@ -69,6 +79,7 @@
 
                     if (response.ok) {
                         const result = await response.text(); 
+                        showMessage(result,'success');
                         setTimeout(() => {
                     window.location.href = 'Login.html';
                 }, 2000);

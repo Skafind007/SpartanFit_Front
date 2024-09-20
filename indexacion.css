@@ -1,0 +1,121 @@
+/* Aplicar colores alternos para las filas pares e impares en las tablas */
+#tablaEjercicios tbody tr:nth-child(even),
+#tablaAlimentos tbody tr:nth-child(even),
+#tablaPersonas tbody tr:nth-child(even),
+#tablaEjercicios tbody tr:nth-child(odd),
+#tablaAlimentos tbody tr:nth-child(odd),
+#tablaPersonas tbody tr:nth-child(odd),
+table.dataTable tbody tr,
+.odd,
+.even {
+    background-color: black;
+}
+
+#tablaEjercicios_paginate .paginate_button,
+#tablaAlimentos_paginate .paginate_button,
+#tablaPersonas_paginate .paginate_button {
+    background-color: gold;
+    color: #333;
+}
+
+#tablaEjercicios_paginate .paginate_button.current,
+#tablaAlimentos_paginate .paginate_button.current,
+#tablaPersonas_paginate .paginate_button.current,
+.dataTables_paginate .paginate_button.current {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.dataTables_wrapper .dataTables_paginate {
+    margin-top: 2rem;  
+}
+
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter {
+    margin-bottom: 2rem; 
+}
+
+#tablaEjercicios_paginate .paginate_button:hover,
+#tablaAlimentos_paginate .paginate_button:hover,
+#tablaPersonas_paginate .paginate_button:hover,
+.dataTables_paginate .paginate_button:hover {
+    background-color: #ccc;
+    color: #333;
+}
+
+#tablaEjercicios_filter,
+#tablaAlimentos_filter,
+#tablaPersonas_filter,
+#tablaEjercicios_length,
+#tablaAlimentos_length,
+#tablaPersonas_length,
+#tablaEjercicios_info,
+#tablaAlimentos_info,
+#tablaPersonas_info {
+    color: white;
+    text-align: center;
+    margin-bottom: 1rem;
+      font-family: 'Rowdies', sans-serif; 
+   
+}
+
+#tablaEjercicios_filter label,
+#tablaAlimentos_filter label,
+#tablaPersonas_filter label,
+#tablaEjercicios_length select,
+#tablaAlimentos_length select,
+#tablaPersonas_length select {
+    color: white;
+    margin: auto;
+}
+
+#tablaEjercicios_filter input,
+#tablaAlimentos_filter input,
+#tablaPersonas_filter input {
+    color: white;
+}
+
+#tablaEjercicios_length select option,
+#tablaAlimentos_length select option,
+#tablaPersonas_length select option {
+    font-family: 'Rowdies', sans-serif; 
+    color: black;
+}
+
+.dataTables_paginate .paginate_button {
+    background-color: rgb(253, 253, 253);
+    color: rgb(255, 255, 255);
+    font-family: 'Rowdies', sans-serif; 
+}
+
+.dataTables_wrapper .dataTables_filter label {
+    color: rgb(255, 254, 254);           
+    font-family: 'Rowdies', sans-serif; 
+    font-size: 1rem;       
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    padding: 5px 10px;      
+    border-radius: 5px;  
+    border: 1px solid #ccc; 
+    width: 10rem;         
+    background-color: #fffefe; 
+    color: rgb(13, 13, 13);    
+    font-family: 'Rowdies', sans-serif;      
+}
+
+.dataTables_wrapper .dataTables_length select {
+    padding: 5px;       
+    border-radius: 5px;    
+    border: 1px solid #ccc; 
+    font-family: 'Rowdies', sans-serif; 
+    background-color: #fefefe; 
+    color: rgb(3, 3, 3);           
+}
+
+.dataTables_wrapper .dataTables_length label {
+    color: white;          
+    font-family: 'Rowdies', sans-serif; 
+    font-size: 1rem;        
+}
