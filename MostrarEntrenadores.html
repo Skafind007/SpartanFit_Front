@@ -119,7 +119,7 @@
                                 <img src="usuario (1).png" onclick='guardarDatosEntrenador(${index})'>
                             </td>
                             <td>
-                                <img src="basura.png" onclick='EliminarEntrenador(${persona.id_usuario})'>
+                                 <img src="basura.png" onclick='EliminarEntrenador(${index})' alt="Eliminar Entrenador">
                             </td>
                          </tr>`;
             });
@@ -187,30 +187,35 @@
         }
 
        
-        function EliminarEntrenador(id_usuario) {
-            showMessage("¿Estás seguro de que deseas eliminar este entrenador?", function() {
-                fetch(`https://localhost:7007/api/Administrador/EliminarEntrenador/${id_usuario}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Error al eliminar el entrenador');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    showMessageError("Entrenador eliminado correctamente.");
-                    location.reload();
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showMessageError("Hubo un error al eliminar el entrenador.");
-                });
-            });
+        function EliminarEntrenador(index) {
+    
+    const entrenador = entrenadoresData[index];
+    const id_usuario = entrenador.id_usuario; 
+    showMessage("¿Estás seguro de que deseas eliminar este entrenador?", function() {
+    fetch(`https://localhost:7007/api/Administrador/EliminarEntrenador?id=${encodeURIComponent(id_usuario)}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error al eliminar el entrenador');
         }
+        return response.json();
+    })
+    .then(data => {
+        showMessageError(data.mensaje || "Entrenador eliminado correctamente.");
+        location.reload(); 
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showMessageError("Hubo un error al eliminar el entrenador.");
+    });
+}
+    )};
+
+
 
    //VARIABLES DE SESION ADMIN    
         function CerrarSesion() {
