@@ -73,9 +73,11 @@
             console.log("No se encontraron datos del entrenador en el local storage.");
         }
 
+
+
         async function ActualizarEntrenador() {
             const form = document.getElementById('ActualizarEntrenador-form');
-
+            console.log(form);
             if (form.checkValidity()) {
                 const formData = new FormData(form);
 
@@ -89,11 +91,11 @@
                         const result = await response.text(); 
                         showMessage(result, 'success');
                         localStorage.removeItem('entrenadorDatos');
-                        setTimeout(() => {
+                        
                     window.location.href='MostrarEntrenadores.html';
-                }, 2000);
+                    }
                      
-                    } else {
+                     else {
                         const error = await response.text();
                         showMessage(`Error: ${error}`, 'error');
                     }
