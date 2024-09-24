@@ -7,9 +7,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ActualizarEntrenador.css">
+    <link rel="stylesheet" href="Css/ActualizarEntrenador.css">
     <title>Actualizar Entrenador</title>
 </head>
+<script src="JS/ActualizarEntrenador.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
@@ -56,23 +57,10 @@
             </div>
         </div>
     </div>
-    <script>
-       
-        const entrenadorDatos = localStorage.getItem('entrenadorDatos');
-    
-        if (entrenadorDatos) {
-            const entrenador = JSON.parse(entrenadorDatos);
-    
-            document.getElementById('id_usuario').value = entrenador.id_usuario;
-            document.getElementById('nombres').value = entrenador.nombres;
-            document.getElementById('apellidos').value = entrenador.apellidos;
-            document.getElementById('correo').value = entrenador.correo;
-            document.getElementById('genero').value = entrenador.genero;
-            document.getElementById('fechaNacimiento').value = entrenador.fecha_nacimiento;
-        } else {
-            console.log("No se encontraron datos del entrenador en el local storage.");
-        }
+   <script>
+    const entrenadorDatos = localStorage.getItem('entrenadorDatos');
 
+<<<<<<< HEAD
 
 
         async function ActualizarEntrenador() {
@@ -154,6 +142,21 @@
         };
     </script>
     
+=======
+if (entrenadorDatos) {
+    const entrenador = JSON.parse(entrenadorDatos);
+
+    document.getElementById('id_usuario').value = entrenador.id_usuario;
+    document.getElementById('nombres').value = entrenador.nombres;
+    document.getElementById('apellidos').value = entrenador.apellidos;
+    document.getElementById('correo').value = entrenador.correo;
+    document.getElementById('genero').value = entrenador.genero;
+    document.getElementById('fechaNacimiento').value = entrenador.fecha_nacimiento;
+} else {
+    console.log("No se encontraron datos del entrenador en el local storage.");
+}
+   </script>
+>>>>>>> origin/AlejoDev
     
 </body>
 </html>

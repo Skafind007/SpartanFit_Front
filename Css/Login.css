@@ -13,7 +13,7 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    background-image: url('FondoAdministrador.jpg');
+    background-image: url('Imagenes/Login-001.jpg');
 }
 h1 {
     font-family: "Yatra One", system-ui;
@@ -70,28 +70,28 @@ ul {
 
 section {
     position: static;
-    max-width: 25rem; 
-    background-color: rgba(9, 17, 50, 0.526);
-    border: 0.3125rem solid rgb(43, 74, 102); 
+    max-width: 25rem; /* 400px */
+    background-color: rgba(33, 33, 33, 0.5);
+    border: 0.3125rem solid rgb(101, 101, 98); /* 5px */
     border-radius: 20px;
-    backdrop-filter: blur(3.4375rem); 
+    backdrop-filter: blur(3.4375rem); /* 55px */
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 3rem;
     opacity: 0.9;
-    margin-top: 4.375rem; 
+    margin-top: 4.375rem; /* 70px */
     font-family: "Yatra One", system-ui;
 }
 
 .inputbox input {
     width: 100%;
-    height: 3.75rem; 
+    height: 3.75rem; /* 60px */
     background: transparent;
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 0 2.1875rem 0 0.1875rem; 
+    padding: 0 2.1875rem 0 0.1875rem; /* 35px 3px */
     color: rgb(255, 255, 255);
 }
 
@@ -102,24 +102,24 @@ h1 {
 
 .inputbox ion-icon {
     position: absolute;
-    right: 0.5rem; 
+    right: 0.5rem; /* 8px */
     color: rgb(255, 255, 255);
     font-size: 1.2rem;
-    top: 0.625rem; 
+    top: 0.625rem; /* 10px */
 }
 
 .inputbox {
     position: relative;
-    margin: 1.875rem 0; 
-    max-width: 15.625rem; 
+    margin: 1.875rem 0; /* 30px */
+    max-width: 15.625rem; /* 250px */
     font-family: "Yatra One", system-ui;
-    border-bottom: 0.125rem solid #ffffff; 
+    border-bottom: 0.125rem solid #ffffff; /* 2px */
 }
 
     .inputbox label {
         position: absolute;
         top: 10%;
-        left: 0.3125rem; 
+        left: 0.3125rem; /* 5px */
         transform: translateY(-60%);
         color: #ffffff;
         font-size: 1rem;
@@ -134,6 +134,54 @@ input:valid ~ label {
     font-family: "Yatra One", system-ui;
 }
 
+.forget {
+    margin: 2.1875rem 0; /* 35px */
+    font-size: 0.85rem;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+}
+
+    .forget label {
+        display: flex;
+        align-items: center;
+        font-family: "Yatra One", system-ui;
+    }
+
+        .forget label input {
+            margin-right: 0.1875rem; /* 3px */
+            font-family: "Yatra One", system-ui;
+        }
+
+    .forget a {
+        color: rgb(247, 239, 8);
+        text-decoration: none;
+        font-weight: 600;
+        font-family: "Yatra One", system-ui;
+    }
+
+        .forget a:hover {
+            text-decoration: underline;
+        }
+
+
+
+.register {
+    font-size: 0.9rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 1.5625rem 0 0.625rem; /* 25px 10px */
+}
+
+    .register p a {
+        text-decoration: none;
+        color: rgb(247, 239, 8);
+        font-weight: 600;
+    }
+
+        .register p a:hover {
+            text-decoration: underline;
+        }
         .botonI_slide {
             background-color: rgb(7, 125, 251);
             color: #FFF;
@@ -266,8 +314,4 @@ input:valid ~ label {
 .error-btn {
     background-color: #68211c;
     color: white;
-}
-.centrarT{
-    align-items: center;
-    text-align: center;
 }
