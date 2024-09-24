@@ -25,10 +25,26 @@ if (event.key === 'Enter') {
 });
 });
 
+function convertirCadenaABinario(texto) {
+    let resultadoBinario = '';
+
+    for (let i = 0; i < texto.length; i++) {
+        
+        let binario = texto.charCodeAt(i).toString(2);
+     
+        binario = binario.padStart(8, '0');
+        resultadoBinario += binario;
+    }
+
+    return resultadoBinario;
+}
+
 function crearCuenta() {
 const form = document.getElementById('registro-form');
 
 if (form.checkValidity()) {
+    let password = document.getElementById('contrasena').value;
+    let passwordBinario = convertirCadenaABinario(password);
 
 const usuarioData = {
     persona: {
@@ -36,7 +52,7 @@ const usuarioData = {
         nombres: document.getElementById('nombres').value,
         apellidos: document.getElementById('apellidos').value,
         correo: document.getElementById('correo').value,
-        contrasena: document.getElementById('contrasena').value,
+        contrasena: passwordBinario,
         fecha_nacimiento: document.getElementById('fecha_nacimiento').value,
         genero: document.getElementById('genero').value,
     },

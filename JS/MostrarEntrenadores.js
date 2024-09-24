@@ -164,4 +164,19 @@
                 window.location.href = 'Error.html'; 
             }
         };
+
+        function downloadPdf() {
+            fetch('https://localhost:7007/api/Administrador/ReporteEntrenadores')
+              .then(response => response.blob())  
+              .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'Reporte_Entrenadores.pdf';  
+                document.body.appendChild(a);  
+                a.click();  
+                a.remove();
+              })
+              .catch(error => console.error('Error al descargar el PDF:', error)); 
+          }
   
