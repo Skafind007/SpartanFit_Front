@@ -7,9 +7,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="ActualizarEntrenador.css">
+    <link rel="stylesheet" href="Css/ActualizarEntrenador.css">
     <title>Actualizar Entrenador</title>
 </head>
+<script src="JS/ActualizarEntrenador.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
@@ -56,102 +57,22 @@
             </div>
         </div>
     </div>
-    <script>
-       
-        const entrenadorDatos = localStorage.getItem('entrenadorDatos');
-    
-        if (entrenadorDatos) {
-            const entrenador = JSON.parse(entrenadorDatos);
-    
-            document.getElementById('id_usuario').value = entrenador.id_usuario;
-            document.getElementById('nombres').value = entrenador.nombres;
-            document.getElementById('apellidos').value = entrenador.apellidos;
-            document.getElementById('correo').value = entrenador.correo;
-            document.getElementById('genero').value = entrenador.genero;
-            document.getElementById('fechaNacimiento').value = entrenador.fecha_nacimiento;
-        } else {
-            console.log("No se encontraron datos del entrenador en el local storage.");
-        }
+   <script>
+    const entrenadorDatos = localStorage.getItem('entrenadorDatos');
 
-        async function ActualizarEntrenador() {
-            const form = document.getElementById('ActualizarEntrenador-form');
+if (entrenadorDatos) {
+    const entrenador = JSON.parse(entrenadorDatos);
 
-            if (form.checkValidity()) {
-                const formData = new FormData(form);
-
-                try {
-                    const response = await fetch('https://localhost:7007/api/Administrador/ActualizarEntrenador', { 
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    if (response.ok) {
-                        const result = await response.text(); 
-                        showMessage(result, 'success');
-                        localStorage.removeItem('entrenadorDatos');
-                        setTimeout(() => {
-                    window.location.href='MostrarEntrenadores.html';
-                }, 2000);
-                     
-                    } else {
-                        const error = await response.text();
-                        showMessage(`Error: ${error}`, 'error');
-                    }
-                } catch (error) {
-                    console.error('Fetch error:', error);
-                    showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
-                }
-            } else {
-                showMessage('Por favor, escribe todos los campos.');
-            }
-        }
-        function showMessage(message, type) {
-            const messageModal = document.getElementById('messageModal');
-           
-            
-            messageText.textContent = message;
-            if (type === 'success') {
-                successBtn.style.display = 'block';
-                errorBtn.style.display = 'none';
-            } else {
-                successBtn.style.display = 'none';
-                errorBtn.style.display = 'block';
-            }
-            
-            messageModal.style.display = 'flex';
-        }
-
-        function closeMessageModal() {
-            document.getElementById('messageModal').style.display = 'none';
-        }
-
-         //VARIABLES DE SESION ADMIN    
-         function CerrarSesion() {
-            deleteCookie('userRole');
-            localStorage.removeItem('entrenadorDatos');
-            window.location.href = 'Login.html'; 
-        }
-
-     
-        function getCookie(name) {
-            const value = `; ${document.cookie}`;
-            const parts = value.split(`; ${name}=`);
-            if (parts.length === 2) return parts.pop().split(';').shift();
-        }
-
-        function deleteCookie(name) {
-            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        }
-
-        window.onload = function() {
-            const userRole = getCookie('userRole');
-
-            if (userRole !== '3') {
-                window.location.href = 'Error.html'; 
-            }
-        };
-    </script>
-    
+    document.getElementById('id_usuario').value = entrenador.id_usuario;
+    document.getElementById('nombres').value = entrenador.nombres;
+    document.getElementById('apellidos').value = entrenador.apellidos;
+    document.getElementById('correo').value = entrenador.correo;
+    document.getElementById('genero').value = entrenador.genero;
+    document.getElementById('fechaNacimiento').value = entrenador.fecha_nacimiento;
+} else {
+    console.log("No se encontraron datos del entrenador en el local storage.");
+}
+   </script>
     
 </body>
 </html>

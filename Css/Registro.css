@@ -54,20 +54,19 @@ body {
             justify-content: center;
             align-items: center;
             height: 100vh;
-        background: url(FondoAdministrador.jpg);
-        background-size: cover;
+        background: url(Imagenes/FondoRegistro.jpg);
             color: #ffffff;
          
 }
 .form-container {
-    background-color: rgba(9, 17, 50, 0.526);
+    background: #302e2eb0;
     
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0 1rem rgb(255, 255, 255);
+    box-shadow: 0 0 1rem rgba(139, 56, 56, 0.1);
     width: 100%;
     max-width: 50rem;
-    margin: 8rem auto 0 auto;
+    margin: 8rem auto 0 auto; 
     
 }
 
@@ -75,7 +74,7 @@ form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    color: rgb(255, 255, 255);
+    color: white;
 }
 
 .form-group {
@@ -85,60 +84,35 @@ form {
 
 .form-group label {
     margin-bottom: 0.5rem;
-    font-family: "Yatra One", system-ui;
     font-weight: bold;
 }
 
 .form-group input,
 .form-group select {
     padding: 0.5rem;
-    background-color: rgba(10, 50, 65, 0.68);
-    color: rgb(248, 248, 248);
+    background-color: rgba(208, 202, 202, 0.68);
+    color: rgb(0, 0, 0);
     border-radius: 0.5rem;
-    border-color:rgb(252, 252, 252);
 }
 
-.botonI{
-    background:#05b8c9;
-    color:#000000;
-    border:none;
-    position:relative;
-    height:60px;
-    font-size:1.6rem;
-    padding:0 1.5rem;
-    cursor:pointer;
-    transition:900ms ease all;
-    outline:none;
-    font-family: "Yatra One", system-ui;
-    font-weight: 400;
-    font-style: normal;
-  }
-  .botonI:hover{
-    background:#00fb43;
-    color:#000000;
-  }
-  .botonI:before,.botonI:after{
-    content:'';
-    position:absolute;
-    top:0;
-    right:0;
-    height:2px;
-    width:0;
-    background: #48ff00;
-    transition:400ms ease all;
-  }
-  .botonI:after{
-    right:inherit;
-    top:inherit;
-    left:0;
-    bottom:0;
-  }
-  .botonI:hover:before,.botonI:hover:after{
-    width:100%;
-    transition:800ms ease all;
-  }
 
 
+button {
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+}
+
+.boton-crear {
+    background-color: #eab907;
+    color: white;
+}
+
+.boton-cancelar {
+    background-color: #e70b0b;
+    color: white;
+}
 
 .centrar{
 text-align: center;
