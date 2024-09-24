@@ -12,11 +12,8 @@ async function ActualizarEntrenador() {
 
             if (response.ok) {
                 const result = await response.text(); 
-                showMessage(result, 'success');
                 localStorage.removeItem('entrenadorDatos');
-                setTimeout(() => {
             window.location.href='MostrarEntrenadores.html';
-        }, 2000);
              
             } else {
                 const error = await response.text();
