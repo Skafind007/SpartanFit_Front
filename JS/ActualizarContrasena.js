@@ -8,11 +8,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     });
+
+    function convertirCadenaABinario(texto) {
+        let resultadoBinario = '';
+    
+        for (let i = 0; i < texto.length; i++) {
+            
+            let binario = texto.charCodeAt(i).toString(2);
+         
+            binario = binario.padStart(8, '0');
+            resultadoBinario += binario;
+        }
+    
+        return resultadoBinario;
+    }
         async function Restablecer() {
             const form = document.getElementById('contrasena-form');
+            
 
             if (form.checkValidity()) {
                 const formData = new FormData(form);
+                const password = formData.get('contrasena');  
+                const passwordBinario = convertirCadenaABinario(password);  
+
+        formData.set('contrasena', passwordBinario);
 
                 try {
                     const response = await fetch('https://localhost:7007/api/Persona/RestablecerContrasena', { 

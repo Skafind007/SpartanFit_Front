@@ -120,17 +120,17 @@ function CerrarSesion() {
     window.location.href = 'Login.html'; 
 }
 
-document.getElementById('downloadPdfBtn').addEventListener('click', function() {
-   
-    fetch('/generate-pdf')
+function downloadPdf() {
+    fetch('https://localhost:7007/api/Administrador/ReporteUsuarios')
       .then(response => response.blob())  
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'reportEstudiantes.pdf';  
+        a.download = 'Reporte_Usuarios.pdf';  
         document.body.appendChild(a);  
         a.click();  
         a.remove();
       })
       .catch(error => console.error('Error al descargar el PDF:', error)); 
+  }

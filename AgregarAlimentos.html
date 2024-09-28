@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/AgregarAlimento.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>RegistroAlimento</title>
+</head>
+<script src="JS/AñadirAlimento.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="PrincipalEntrenador.html">Inicio</a></li>
+            <li><a href="MostrarEntrenadores.html">Alimentos</a></li>
+            <li><a href="MostrarEntrenadores.html">Ejercicios</a></li>
+            <li><a href="#" onclick="CerrarSesion()"></a></li>
+        </ul>
+    </header>
+    
+    <section>
+    <div class="form-container">
+        <h3>Añadir Alimento</h3>
+        <form id="registroAlimento-form"  method="post">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+            </div>
+            <div class="form-row"> 
+                <div class="form-group">
+                    <label for="id_categoria_alimento">Categoria:</label>
+                    <select id="id_categoria_alimento"" name="id_categoria_alimento"" required>
+                        <option value="">Seleccione</option>
+                        <option value="1">Proteinas</option>
+                        <option value="2">Carbohidratos</option>
+                        <option value="3">Frutas</option>                        
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="grasa">Grasa:</label>
+                    <input type="number" id="grasa" name="grasa" required>
+                </div>
+                </div>
+           
+                <div class="form-row">
+                <div class="form-group">
+                    <label for="calorias_x_gramo">Calorias Por Gramo:</label>
+                    <input type="number" id="calorias_x_gramo" name="calorias_x_gramo" required>
+                </div>
+                
+            </div>
+           
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="carbohidrato">Carbohidratos:</label>
+                    <input type="number" id="carbohidrato" name="carbohidrato" required>
+                </div>
+              
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="proteina">Proteina:</label>
+                    <input type="number" id="proteina" name="proteina" required>
+                </div>
+            
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fibra">Fibra:</label>
+                    <input type="number" id="fibra" name="fibra" required>
+                </div>
+                <br>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="apoyo_visual">URL Imagen:</label>
+                    <input type="url" id="apoyo_visual" name="apoyo_visual" required>
+                </div>
+             
+            </div>
+        </form>
+       
+        <div class="centrar">
+            <button type="button" class="botonI" onclick="AñadirAlimento()">Añadir</button>
+        </div>
+    </div>
+
+    </section>
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="cancelModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p>¿Estás seguro de que deseas cancelar?</p>
+            <div class="message-buttons">
+                <button class="confirm-btn" onclick="cancelar()">Sí, cancelar</button>
+                <button class="cancel-btn" onclick="closeModal()">No, regresar</button>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

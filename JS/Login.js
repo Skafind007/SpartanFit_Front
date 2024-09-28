@@ -54,7 +54,7 @@ async function redireccionar() {
                     window.location.href = 'PrincipalEntrenador.html';
                     setCookie('userRole', result.id_rol, 7);
                 } else if (result.id_rol === 3) {
-                    window.location.href = 'PrincipalAdministrador.html';
+                    window.location.href = 'MostrarUsuario.html';
                     setCookie('userRole', result.id_rol, 7);
                 }
 
@@ -71,11 +71,30 @@ async function redireccionar() {
     }
 }
 
+function convertirCadenaABinario(texto) {
+    let resultadoBinario = '';
+
+    for (let i = 0; i < texto.length; i++) {
+        
+        let binario = texto.charCodeAt(i).toString(2);
+     
+        binario = binario.padStart(8, '0');
+        resultadoBinario += binario;
+    }
+
+    return resultadoBinario;
+}
+
 async function IniciarSesion() {
     const form = document.getElementById('login-form');
 
     if (form.checkValidity()) {
         const formData = new FormData(form);
+
+        const password = formData.get('contrasena');  
+        const passwordBinario = convertirCadenaABinario(password);  
+
+        formData.set('contrasena', passwordBinario);
 
         try {
             const response = await fetch('https://localhost:7007/api/Persona/IniciarSesion', { 
@@ -98,6 +117,7 @@ async function IniciarSesion() {
         showMessage('Por favor, completa todos los campos requeridos.');
     }
 }
+
 
 function showMessage(message, type) {
     const messageModal = document.getElementById('messageModal');
