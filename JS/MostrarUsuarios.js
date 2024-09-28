@@ -119,3 +119,18 @@ function CerrarSesion() {
     deleteCookie('userRole');
     window.location.href = 'Login.html'; 
 }
+
+document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+   
+    fetch('/generate-pdf')
+      .then(response => response.blob())  
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'reportEstudiantes.pdf';  
+        document.body.appendChild(a);  
+        a.click();  
+        a.remove();
+      })
+      .catch(error => console.error('Error al descargar el PDF:', error)); 
