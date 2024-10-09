@@ -29,7 +29,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 0 1.25rem 0.125rem #ffffff; /* 20px 2px */
+    box-shadow: 0 0 1.25rem 0.125rem #ffffff; 
     background-color: rgb(114, 5, 5);
     padding: 0 1rem;
     z-index: 100;
@@ -70,28 +70,28 @@ ul {
 
 section {
     position: static;
-    max-width: 25rem; /* 400px */
+    max-width: 25rem; 
     background-color: rgba(33, 33, 33, 0.5);
-    border: 0.3125rem solid rgb(101, 101, 98); /* 5px */
+    border: 0.3125rem solid rgb(101, 101, 98); 
     border-radius: 20px;
-    backdrop-filter: blur(3.4375rem); /* 55px */
+    backdrop-filter: blur(3.4375rem); 
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 2rem 3rem;
     opacity: 0.9;
-    margin-top: 4.375rem; /* 70px */
+    margin-top: 4.375rem;
     font-family: "Yatra One", system-ui;
 }
 
 .inputbox input {
     width: 100%;
-    height: 3.75rem; /* 60px */
+    height: 3.75rem; 
     background: transparent;
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 0 2.1875rem 0 0.1875rem; /* 35px 3px */
+    padding: 0 2.1875rem 0 0.1875rem; 
     color: rgb(255, 255, 255);
 }
 
@@ -102,24 +102,24 @@ h1 {
 
 .inputbox ion-icon {
     position: absolute;
-    right: 0.5rem; /* 8px */
+    right: 0.5rem; 
     color: rgb(255, 255, 255);
     font-size: 1.2rem;
-    top: 0.625rem; /* 10px */
+    top: 0.625rem; 
 }
 
 .inputbox {
     position: relative;
-    margin: 1.875rem 0; /* 30px */
-    max-width: 15.625rem; /* 250px */
+    margin: 1.875rem 0;
+    max-width: 15.625rem; 
     font-family: "Yatra One", system-ui;
-    border-bottom: 0.125rem solid #ffffff; /* 2px */
+    border-bottom: 0.125rem solid #ffffff; 
 }
 
     .inputbox label {
         position: absolute;
         top: 10%;
-        left: 0.3125rem; /* 5px */
+        left: 0.3125rem; 
         transform: translateY(-60%);
         color: #ffffff;
         font-size: 1rem;
@@ -130,12 +130,12 @@ h1 {
 
 input:focus ~ label,
 input:valid ~ label {
-    top: -0.3125rem; /* -5px */
+    top: -0.3125rem; 
     font-family: "Yatra One", system-ui;
 }
 
 .forget {
-    margin: 2.1875rem 0; /* 35px */
+    margin: 2.1875rem 0; 
     font-size: 0.85rem;
     color: rgb(255, 255, 255);
     display: flex;
@@ -149,7 +149,7 @@ input:valid ~ label {
     }
 
         .forget label input {
-            margin-right: 0.1875rem; /* 3px */
+            margin-right: 0.1875rem; 
             font-family: "Yatra One", system-ui;
         }
 
@@ -170,7 +170,7 @@ input:valid ~ label {
     font-size: 0.9rem;
     color: rgb(255, 255, 255);
     text-align: center;
-    margin: 1.5625rem 0 0.625rem; /* 25px 10px */
+    margin: 1.5625rem 0 0.625rem; 
 }
 
     .register p a {

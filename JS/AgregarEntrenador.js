@@ -84,7 +84,7 @@
                 errorBtn.style.display = 'block';
             }
             
-            messageModal.style.display = 'flex'; // Mostrar el modal
+            messageModal.style.display = 'flex';
         }
 
         function closeMessageModal() {
@@ -92,7 +92,7 @@
         }
       
         function confirmarCancelar() {
-            document.getElementById('cancelModal').style.display = 'flex'; // Mostrar el modal de cancelación
+            document.getElementById('cancelModal').style.display = 'flex'; 
         }
 
         function closeModal() {
@@ -102,4 +102,8 @@
         function cancelar() {
             window.location.href = 'MostrarEntrenadores.html'; 
         }
-    
+        function CerrarSesion() {
+            deleteCookie('userRole');
+            deleteCookie('userId');
+            window.location.href = 'Login.html'; 
+        }

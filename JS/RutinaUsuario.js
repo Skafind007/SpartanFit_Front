@@ -21,5 +21,6 @@
 
     function CerrarSesion() {
         deleteCookie('userRole');
+        deleteCookie('userId');
         window.location.href = 'Login.html'; 
     }
