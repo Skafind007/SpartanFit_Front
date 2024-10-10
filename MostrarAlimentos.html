@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <link rel="stylesheet" href="Css/MostrarUsuario.css">
+    <link rel="stylesheet" href="Css/indexacion.css">
+    <title>Ejercicios</title>
+</head>
+<script src="JS/MostrarEjercicios.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarEjercicio.html">Ejercicios</a></li>
+            <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    <div class="centrarT">
+        <table id="ejercicios" class="table" border="1">
+            <thead class="encabezado">
+                <tr>
+                    <th class="nombres">Nombre</th>
+                    <th class="nombres">Calorías por Gramo</th>
+                    <th class="nombres">Grasa</th>
+                    <th class="nombres">Carbohidratos</th>
+                    <th class="nombres">Proteína</th>
+                    <th class="nombres">Fibra</th>
+                </tr>
+            </thead>
+            <tbody id="contenido" class="contenido">
+            </tbody>
+        </table>
+    </div>
+   
+    <div class="centrar">
+        <button type="button" class="botonI" onclick="Crear()">Añador Alimento</button>
+     
+    </div>
+    
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="cancel-btn" id="cancelBtn" onclick="closeMessageModal()">Cancelar</button>
+                    <button class="error-btn" id="confirmBtn">Eliminar</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    <div id="messageModalError" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModalError()">&times;</span>
+            <p id="errorMessageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="success-btn" id="okBtn" onclick="closeMessageModalError()">OK</button>  
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>
