@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/FormUsuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>RegistroEjercicio</title>
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="RutinaUsuario.html">Rutina</a></li>
+            <li><a href="AlimentacionUsuario.html">Plan Alimenticio</a></li>
+            <li><a href="Perfil.html">Perfil</a></li>
+            <li><a href="#" onclick="CerrarSesion()"> Cerrar Sesion</a></li>
+        </ul>
+    </header>  
+    <section>
+    <form id="AñadirEjercicio-form" method="post">      
+        <h1>Actualizar Objetivo</h1>   
+                              
+        <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+         
+            <label for="rehabilitacion">¿Está en rehabilitación física?</label>
+                    <select id="rehabilitacion" name="rehabilitacion" onchange="toggleFields()">
+                        <option value="">Seleccione</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
+                    </select>
+        </div>
+        <div class="inputbox">
+            <label for="nivel_entrenamiento">Nivel de entrenamiento:</label>
+            <select id="nivel_entrenamiento" name="nivel_entrenamiento">
+                <option value="0">Seleccione</option>
+                <option value="1">Básico</option>
+                <option value="2">Medio</option>
+                <option value="3">Avanzado</option>
+            </select>
+        </div>
+        <div class="inputbox">
+            <label for="objetivo">Objetivo:</label>
+                    <select id="objetivo" name="objetivo">
+                        <option value="0">Seleccione</option>
+                        <option value="1">Definición</option>
+                        <option value="2">Mantenimiento</option>
+                        <option value="3">Hipertrofia</option>
+                        <option value="4">Fuerza</option>
+                    </select>     
+        </div>      
+      
+        <div class="centrarT">
+        <button type="submit" class="botonI" onclick="ActuaMedidas()">Actualizar</button>
+        
+        </div>
+    </form>

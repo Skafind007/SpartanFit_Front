@@ -140,12 +140,11 @@
 
 
    //VARIABLES DE SESION ADMIN    
-        function CerrarSesion() {
-            deleteCookie('userRole');
-            localStorage.removeItem('entrenadorDatos');
-            window.location.href = 'Login.html'; 
-        }
-
+   function CerrarSesion() {
+    deleteCookie('userRole');
+    deleteCookie('userId');
+    window.location.href = 'Login.html'; 
+}
      
         function getCookie(name) {
             const value = `; ${document.cookie}`;

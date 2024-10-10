@@ -22,9 +22,9 @@ const ejercicio = {
     apoyo_visual: document.getElementById('apoyo_visual').value
 };
 
-console.log('AlimentoData:', ejercicio); 
+console.log('EjercicioData:', ejercicio); 
 
-fetch('https://localhost:7007/api/Entrenador/RegistrarEjercicio', { 
+fetch('https://localhost:7007/api/Ejercicio/RegistrarEjercicio', { 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'
@@ -32,24 +32,37 @@ fetch('https://localhost:7007/api/Entrenador/RegistrarEjercicio', {
     body: JSON.stringify(ejercicio)
 })
 .then(response => {
-    if (response.ok) {
-        showMessage('¡Ejercicio creado exitosamente!', 'success');
+    return response.json().then(data => ({
+        status: response.status,  
+        body: data                
+    }));
+})
+.then(responseObject => {
+    const { status, body } = responseObject;
+
+    if (status === 200) { 
+        console.log(body.mensaje);  
+        showMessage(body.mensaje, 'success');
         setTimeout(() => {
             window.location.href = 'MostrarEjercicios.html';
         }, 2000);
-    } else {                           
-        showMessage('El Ejercicio ya está registrado', 'error');
+    } else if (status === 400) { 
+        console.log(body); 
+        showMessage(body, 'error');
+    } else if (status === 404) {  
+        console.log(body);  
+        showMessage(body, 'error');
+    } else {
+        console.log('Respuesta inesperada:', body);
+        showMessage('Error desconocido, intenta nuevamente.', 'error');
     }
 })
 .catch(error => {
     console.log('Fetch error:', error);
     showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
 });
-} else {
-showMessage('Por favor, completa todos los campos requeridos.', 'error');
 }
 }
-
 
 function showMessage(message, type) {
     const messageModal = document.getElementById('messageModal');
@@ -66,7 +79,7 @@ function showMessage(message, type) {
         errorBtn.style.display = 'block';
     }
     
-    messageModal.style.display = 'flex'; // Mostrar el modal
+    messageModal.style.display = 'flex'; 
 }
 
 function closeMessageModal() {
@@ -74,13 +87,16 @@ function closeMessageModal() {
 }
 
 function confirmarCancelar() {
-    document.getElementById('cancelModal').style.display = 'flex'; // Mostrar el modal de cancelación
+    document.getElementById('cancelModal').style.display = 'flex'; 
 }
 
 function closeModal() {
     document.getElementById('cancelModal').style.display = 'none';
 }
 
-function cancelar() {
-    window.location.href = 'MostrarEntrenadores.html'; 
+
+function CerrarSesion() {
+    deleteCookie('userRole');
+    deleteCookie('userId');
+    window.location.href = 'Login.html'; 
 }

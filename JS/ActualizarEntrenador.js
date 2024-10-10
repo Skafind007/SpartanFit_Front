@@ -1,3 +1,13 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('ActualizarEntrenador-form');
+    
+    form.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') { 
+            event.preventDefault(); 
+            ActualizarEntrenador(); 
+        }
+    });
+    });
 async function ActualizarEntrenador() {
     const form = document.getElementById('ActualizarEntrenador-form');
 
