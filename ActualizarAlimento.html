@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/AgregarAlimento.css">
+    <title>Actualizar Alimento</title>
+</head>
+<script src="JS/ActualizarAlimento.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarEjercicio.html">Ejercicios</a></li>
+            <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    <section>
+        <form id="ActualizarAlimento-form" method="post">      
+            <h1>Alimento</h1>   
+                <input type="number" id="id_alimento" name="id_alimento" value="" hidden> 
+                <input type="number" id="id_categoria_alimento" name="id_categoria_alimento" value="" hidden>                          
+            <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="text" id="nombre_alimento" name="nombre_alimento" value="">
+                <label for="nombre_alimento">Nombre:</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" id="calorias_x_gramo" name="calorias_x_gramo" value="">
+                <label for="calorias_x_gramo">Calorías por Gramo:</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" id="grasa" name="grasa" value="">
+                <label for="grasa">Grasa (g):</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" id="carbohidrato" name="carbohidrato" value="">
+                <label for="carbohidrato">Carbohidratos (g):</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" id="proteina" name="proteina" value="">
+                <label for="proteina">Proteína (g):</label>
+            </div>
+            <div class="inputbox">
+                <input type="number" id="fibra" name="fibra" value="">
+                <label for="fibra">Fibra (g):</label>
+            </div>   
+            <div class="centrarT">
+                <button type="submit" class="botonI" onclick="ActualizarAlimento()">Actualizar</button>
+            </div>
+        </form>
+    </section>
+    
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                    <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <script>
+        const alimentoDatos = localStorage.getItem('AlimentoDatos');
+
+if (alimentoDatos) {  
+    const alimento = JSON.parse(alimentoDatos);
+
+    document.getElementById('id_alimento').value = alimento.id_alimento;
+    document.getElementById('nombre_alimento').value = alimento.nombre;
+    document.getElementById('calorias_x_gramo').value = alimento.calorias_x_gramo;
+    document.getElementById('grasa').value = alimento.grasa;
+    document.getElementById('carbohidrato').value = alimento.carbohidrato;
+    document.getElementById('proteina').value = alimento.proteina;
+    document.getElementById('fibra').value = alimento.fibra;
+    document.getElementById('id_categoria_alimento').value = alimento.id_categoria_alimento;
+} else {
+    console.log("No se encontraron datos del alimento en el local storage.");
+}
+</script>
+    
+</body>
+</html>

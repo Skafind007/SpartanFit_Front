@@ -19,7 +19,9 @@ function getCookie(name) {
       };
 
       function CerrarSesion() {
-          deleteCookie('userRole');
-          window.location.href = 'Login.html'; 
-      }
+        deleteCookie('userRole');
+        deleteCookie('userId');
+        window.location.href = 'Login.html'; 
+    }
+    
  
