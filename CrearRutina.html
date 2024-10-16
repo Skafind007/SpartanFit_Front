@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
     <title>RegistroEjercicio</title>
 </head>
-<script src="JS/AñadirEjercicio.js"></script>
+<script src="JS/CrearRutina.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
@@ -22,37 +22,61 @@
         </ul>
     </header>
     <section>
-    <form id="AñadirEjercicio-form" method="post">      
-        <h1>Añadir Ejercicio</h1>   
+    <form id="AñadirRutina-form" method="post">      
+        <h1>Crear Rutina</h1>   
                               
         <div class="inputbox">
             <ion-icon name="mail-outline"></ion-icon>
-            <label for="nombre_ejercicio">Nombre Del Ejercicio:</label>
-            <input type="text" id="nombre_ejercicio" name="nombre_ejercicio" required>
+            <label for="nombre_rutina">Nombre Rutina:</label>
+            <input type="text" id="nombre_rutina" name="nombre_rutina" required>
         </div>
         <div class="inputbox">
-            <label for="id_grupo_muscular">Categoria:</label>
-            <select id="id_grupo_muscular" name="id_grupo_muscular" required>
+            <label for="id_nivel rutina">Nivel de  Rutina:</label>
+            <select id="id_nivel rutina" name="id_nivel rutina" required>
                 <option value="">Seleccione</option>
-                <option value="1">Hombro</option>
-                <option value="2">Espalda</option>
-                <option value="3">Pectoral</option>
-                <option value="4">Triceps</option>    
-                <option value="5">Pierna</option>    
-                <option value="6">Biceps</option>    
-                <option value="7">Pantorilla</option>    
-                <option value="8">Abdomen</option>    
-                <option value="9">Cardio</option>
-                <option value="10">Rehabilitacion Fisica</option>   
+                <option value="1">Basico</option>
+                <option value="2">Medio</option>
+                <option value="3">Avanzado</option>
+  
+            </select>
+        </div>
+
+        <div class="inputbox">
+            <label for="objetivo"> Objetivo:</label>
+            <select id="objetivo" name="objetivo" required>
+                <option value="">Seleccione</option>
+                <option value="0">No aplica</option>
+                <option value="1">Definicion</option>
+                <option value="2">Mantenimiento</option>
+                <option value="3">Fuerza</option>
+                <option value="4">Hipertrofria</option>    
+                <option value="5">Rehabilitacion</option>    
+                
             </select>
         </div>
         <div class="inputbox">
-            <label for="apoyo_visual">URL Imagen:</label>
-            <input type="url" id="apoyo_visual" name="apoyo_visual" required>          
-        </div>      
+            <label for="dia"> Dia:</label>
+            <select id="dia" name="dia" required>
+                <option value="">Seleccione</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miercoles">Miercoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>    
+                <option value="Sabado">Sabado</option>  
+                <option value="Domingo">Domingo</option>    
+                
+            </select>
+        </div>
+       
+        <div class="inputbox">
+            <ion-icon name="mail-outline"></ion-icon>
+            <label for="descripcion">Descripcion:</label>
+            <input type="text" id="descripcion" name="descripcion" required>
+        </div>
       
         <div class="centrarT">
-            <button type="button" class="botonI" onclick="AñadirEjercicio()">Añadir</button>
+            <button type="button" class="botonI" onclick="AñadirRutina()">Añadir</button>
 
         
         </div>

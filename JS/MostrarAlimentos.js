@@ -15,7 +15,7 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
 })
 .then(data => {
     AlimentosData = data;
-    const alimentosTable = document.getElementById('ejercicios').getElementsByTagName('tbody')[0];
+    const alimentosTable = document.getElementById('alimentos').getElementsByTagName('tbody')[0];
     let html = "";
     data.forEach((alimento, index) => {
 
@@ -41,7 +41,7 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
     alimentosTable.innerHTML = html;
 
     $(document).ready(function() {
-        $('#ejercicios').DataTable({
+        $('#alimentos').DataTable({
             "paging": true,
             "searching": true,
             "ordering": true,
