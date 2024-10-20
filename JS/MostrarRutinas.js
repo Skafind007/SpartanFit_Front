@@ -1,12 +1,10 @@
 
 function Crear(){
-    window.location.href='AgregarAlimentos.html';
+    window.location.href='CrearRutina.html';
 }
+let RutinaData = [];
 
-let AlimentosData = [];
-
-
-fetch('https://localhost:7007/api/Alimento/ListAlimentos')
+fetch('https://localhost:7007/MostrarRutinas')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -14,41 +12,77 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
     return response.json();
 })
 .then(data => {
-    AlimentosData = data;
-    const alimentosTable = document.getElementById('alimentos').getElementsByTagName('tbody')[0];
-    let html = "";
-    data.forEach((alimento, index) => {
+    RutinaData = data;
+    const RutinaTable = document.getElementById('rutinas').getElementsByTagName('tbody')[0];
 
+    let html = "";
+    data.forEach((rutina, index) => {
+        // Asigna el valor del objetivo según el id_objetivo de cada rutina
+        let Objetivo;
+        switch (rutina.id_objetivo) {
+            case 1:
+                Objetivo = "Definicion";
+                break;
+            case 2:
+                Objetivo = "Mantenimiento";
+                break;
+            case 3:
+                Objetivo = "Hipertrofia";
+                break;
+            case 4:
+                Objetivo = "Fuerza";
+                break;
+            case 5:
+                Objetivo = "Rehabilitacion";
+                break;                         
+            default:
+                Objetivo = "No aplica"; 
+                break;
+        }
+
+        // Asigna el valor del nivel según el id_nivel_rutina de cada rutina
+        let nivel;
+        switch (rutina.id_nivel_rutina) {
+            case 1:
+                nivel = "Principiante";
+                break;
+            case 2:
+                nivel = "Medio";
+                break;
+            case 3:
+                nivel = "Avanzado";
+                break;
+            default:
+                nivel = "No aplica";
+                break;
+        }
+
+        // Construcción del HTML de la tabla
         html += `<tr>
-        <td>${alimento?.nombre}</td>
-        <td>${alimento?.calorias_x_gramo}</td>
-        <td>${alimento?.grasa}</td>
-        <td>${alimento?.carbohidrato}</td>
-        <td>${alimento?.proteina}</td>
-        <td>${alimento?.fibra}</td>
-        <td>
-            <img class="ImgEjer" src="${alimento?.apoyo_visual || 'default_image.jpg'}">
-        </td>
-        <td>
-            <img src="Css/Imagenes/lapiz.png" onclick='guardarDatosAlimento(${index})'>
-        </td>
-        <td>
-            <img src="Css/Imagenes/eliminar.png" onclick='EliminarAlimento(${index})' alt="Eliminar Alimento">
-        </td>
-     </tr>`;
+            <td>${nivel}</td>
+            <td>${Objetivo}</td>
+            <td>${rutina?.nombre_rutina}</td>
+            <td>${rutina?.dia}</td>
+            <td>${rutina?.descripcion}</td>
+            <td>
+                <img src="Css/Imagenes/eliminar.png" onclick='EliminarRutina(${index})' alt="Eliminar Rutina">
+            </td>
+        </tr>`;
     });
 
-    alimentosTable.innerHTML = html;
+    // Inserta el contenido generado en la tabla
+    RutinaTable.innerHTML = html; 
 
+    // Inicializa DataTables sobre la tabla rutinas
     $(document).ready(function() {
-        $('#alimentos').DataTable({
+        $('#rutinas').DataTable({ 
             "paging": true,
             "searching": true,
             "ordering": true,
             "info": true,
             "lengthMenu": [5, 10, 25, 50],
             "drawCallback": function() {
-                $('#tablaAlimentos').css('width', '50%');
+                $('#tablaEjercicios').css('width', '50%');
             }
         });
     });
@@ -57,17 +91,13 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
     console.error('Error en la petición:', error);
 });
 
-function guardarDatosAlimento(index) {
-    const alimento = AlimentosData[index];
-    localStorage.setItem('AlimentoDatos', JSON.stringify(alimento));     
-    window.location.href = 'ActualizarAlimento.html'; 
-}
 
-function EliminarAlimento(index) {
-    const alimento = AlimentosData[index];
-    const id = alimento.id_alimento; 
-    showMessage("¿Estás seguro de que deseas eliminar este alimento?", function() {
-        fetch(`https://localhost:7007/api/Alimento/EliminarAlimento?id_alimento=${encodeURIComponent(id)}`, {
+
+function EliminarRutina(index) {
+    const rutina = RutinaData[index];
+    const id = rutina.id_rutina; 
+    showMessage("¿Estás seguro de que deseas eliminar esta rutina?", function() {
+        fetch(`https://localhost:7007/EliminarRutina?id_rutina=${encodeURIComponent(id)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,17 +105,17 @@ function EliminarAlimento(index) {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al eliminar el alimento');
+                throw new Error('Error al eliminar la rutina');
             }
             return response.json();
         })
         .then(data => {
-            showMessageError(data.mensaje || "Alimento eliminado correctamente.");
+            showMessageError(data.mensaje || "Rutina eliminada correctamente.");
             location.reload(); 
         })
         .catch(error => {
             console.error('Error:', error);
-            showMessageError("Hubo un error al eliminar el alimento.");
+            showMessageError("Hubo un error al eliminar la rutina.");
         });
     });
 }

@@ -71,11 +71,11 @@ function initializeCheckboxEvents() {
     });
 }
 
-// Función para recopilar las series, repeticiones e IDs seleccionados
 function getSelectedCheckboxIds() {
     const listadoSeries = [];
     const listadoRepeticiones = [];
 
+    // Recolectar las series y repeticiones de los ejercicios seleccionados
     selectedCheckboxIDs.forEach(checkboxId => {
         const numSeries = document.getElementById('num_series_' + checkboxId).value;
         listadoSeries.push(numSeries);
@@ -84,66 +84,67 @@ function getSelectedCheckboxIds() {
         listadoRepeticiones.push(numRepeticiones);
     });
 
-    // Obtener los datos del `localStorage`
-    const nombreRutina = localStorage.getItem('nombreRutina') || 'Prueba';
-    const nivelRutina = parseInt(localStorage.getItem('nivelRutina')) || 2;
-    const objetivo = parseInt(localStorage.getItem('objetivo')) || 1;
-    const dia = localStorage.getItem('dia') || 'Martes';
-    const descripcion = localStorage.getItem('descripcion') || 'sapo';
-    const userId = parseInt(localStorage.getItem('userId')) || 8048;
+    // Recuperar los datos desde el localStorage
+    const rutina = JSON.parse(localStorage.getItem('rutina')); // Recuperar todo el objeto
 
-    // Crear un objeto FormData para enviar los datos como multipart/form-data
-    const formData = new FormData();
-    formData.append('id_nivel_rutina', nivelRutina);
-    formData.append('id_objetivo', objetivo);
-    formData.append('nombre_rutina', nombreRutina);
-    formData.append('dia', dia);
-    formData.append('descripcion', descripcion);
-    formData.append('id_entrenador', userId);
+    if (rutina) {
+        const { nombreRutina, nivelRutina, objetivo, dia, descripcion, userId } = rutina;
 
+        // Mostrar los valores para depurar
+        console.log({ nombreRutina, nivelRutina, objetivo, dia, descripcion, userId });
 
-    selectedCheckboxIDs.forEach(id => {
-        formData.append('selectedCheckboxIds', id);
-    });
+        // Crear el objeto FormData dentro del mismo ámbito
+        const formData = new FormData();
+        formData.append('id_nivel_rutina', nivelRutina);
+        formData.append('id_objetivo', objetivo);
+        formData.append('nombre_rutina', nombreRutina);
+        formData.append('dia', dia);
+        formData.append('descripcion', descripcion);
+        formData.append('id_entrenador', userId);
 
-    listadoSeries.forEach(series => {
-        formData.append('listadoSeries', series);
-    });
+        // Añadir los ejercicios seleccionados, sus series y repeticiones
+        selectedCheckboxIDs.forEach(id => {
+            formData.append('selectedCheckboxIds', id);
+        });
 
-    listadoRepeticiones.forEach(repeticiones => {
-        formData.append('listadoRepeticiones', repeticiones);
-    });
+        listadoSeries.forEach(series => {
+            formData.append('listadoSeries', series);
+        });
 
-    console.log('Enviando los siguientes datos:');
-    for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
+        listadoRepeticiones.forEach(repeticiones => {
+            formData.append('listadoRepeticiones', repeticiones);
+        });
+
+        // Enviar el formData al servidor
+        fetch('https://localhost:7007/RegistrarRutina', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error al registrar la rutina');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Rutina registrada con éxito:', data);
+            window.location.href = "MostrarEjercicios.html";
+        })
+        .catch(error => {
+            console.error('Error al registrar la rutina:', error);
+            showMessage('Hubo un error al registrar la rutina: ' + error.message);
+        });
+    } else {
+        console.error("No se encontraron datos de la rutina en el localStorage.");
     }
-
-
-    fetch('https://localhost:7007/RegistrarRutina', {
-        method: 'POST',
-        body: formData 
-    })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Error al registrar la rutina');
-        }
-        return response.json();
-    })
-    .then(data => {
-
-        window.location.href="MostrarEjercicios.html";
-        console.log(data); 
-    })
-    .catch(error => {
-        console.error('Error al registrar la rutina:', error);
-        showMessage('Hubo un error al registrar la rutina: ' + error.message); 
-    });
 }
 
-function submitForm(){
+// Función para enviar el formulario
+function submitForm() {
     getSelectedCheckboxIds();
 }
+
+
 
 
 function showMessage(message, type) {
@@ -175,3 +176,28 @@ function confirmarCancelar() {
 function closeModal() {
     document.getElementById('cancelModal').style.display = 'none';
 }
+//VARIABLES DE SESION ENTRE  
+function CerrarSesion() {
+    deleteCookie('userRole');
+    deleteCookie('userId');
+    localStorage.clear();
+    window.location.href = 'Login.html'; 
+    }
+    
+    function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+    
+    function deleteCookie(name) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    }
+    
+    window.onload = function() {
+        const userRole = getCookie('userRole');
+    
+        if (userRole !== '2') {
+            window.location.href = 'Error.html'; 
+        }
+    };

@@ -1,34 +1,29 @@
-function AñadirRutina() {
-    // Obtener los valores de los campos
-    const nombreRutina = document.getElementById('nombre_rutina').value;
-    const nivelRutina = document.getElementById('id_nivel_rutina').value; 
-    const objetivo = document.getElementById('objetivo').value;
+function Añadir() {
+    localStorage.clear();
+    const nombre = document.getElementById('nombre').value.trim();
     const dia = document.getElementById('dia').value;
-    const descripcion = document.getElementById('descripcion').value;
+    const descripcion = document.getElementById('descripcion').value.trim();
     const userId = getCookie('userId'); 
 
-
-    if (nombreRutina && nivelRutina && objetivo && dia && descripcion) {
  
-        const rutina = {
-            nombreRutina,
-            nivelRutina,
-            objetivo,
-            dia,
-            descripcion,
-            userId
-        };
-
-
-        localStorage.setItem('rutina', JSON.stringify(rutina));
-
-
-        window.location.href = "SeleccionarEjercicio.html";
-    } else {
-
+    if (!nombre || !dia || !descripcion) {
         showMessage("Por favor, completa todos los campos.");
+        return;
     }
+
+  
+    const plan = {
+        nombre,
+        dia,
+        descripcion,
+        userId
+    };
+
+    localStorage.setItem('plan', JSON.stringify(plan));
+
+    window.location.href = "SeleccionarAlimentos.html";
 }
+
 
 
 function closeMessageModal() {

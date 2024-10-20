@@ -61,6 +61,7 @@ function closeMessageModal() {
  function CerrarSesion() {
     deleteCookie('userRole');
     localStorage.removeItem('entrenadorDatos');
+    localStorage.clear();
     window.location.href = 'Login.html'; 
 }
 

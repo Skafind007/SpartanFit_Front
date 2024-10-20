@@ -1,12 +1,11 @@
-
 function Crear(){
-    window.location.href='AgregarAlimentos.html';
+    window.location.href = 'CrearPlan.html';
 }
 
-let AlimentosData = [];
+let PlanesData = [];
 
 
-fetch('https://localhost:7007/api/Alimento/ListAlimentos')
+fetch('https://localhost:7007/api/PlanAlimenticio/MostrarPlanesAlimenticios')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -14,41 +13,35 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
     return response.json();
 })
 .then(data => {
-    AlimentosData = data;
-    const alimentosTable = document.getElementById('alimentos').getElementsByTagName('tbody')[0];
-    let html = "";
-    data.forEach((alimento, index) => {
+    PlanesData = data;
+    const PlanesTable = document.getElementById('planes').getElementsByTagName('tbody')[0];
 
+    let html = "";
+
+
+    data.forEach((plan, index) => {
         html += `<tr>
-        <td>${alimento?.nombre}</td>
-        <td>${alimento?.calorias_x_gramo}</td>
-        <td>${alimento?.grasa}</td>
-        <td>${alimento?.carbohidrato}</td>
-        <td>${alimento?.proteina}</td>
-        <td>${alimento?.fibra}</td>
-        <td>
-            <img class="ImgEjer" src="${alimento?.apoyo_visual || 'default_image.jpg'}">
-        </td>
-        <td>
-            <img src="Css/Imagenes/lapiz.png" onclick='guardarDatosAlimento(${index})'>
-        </td>
-        <td>
-            <img src="Css/Imagenes/eliminar.png" onclick='EliminarAlimento(${index})' alt="Eliminar Alimento">
-        </td>
-     </tr>`;
+            <td>${plan?.nombre}</td>
+            <td>${plan?.dia}</td>
+        
+            <td>
+                <img src="Css/Imagenes/eliminar.png" onclick='Eliminar(${index})' alt="Eliminar">
+            </td>
+        </tr>`;
     });
 
-    alimentosTable.innerHTML = html;
+
+    PlanesTable.innerHTML = html;
 
     $(document).ready(function() {
-        $('#alimentos').DataTable({
+        $('#planes').DataTable({ 
             "paging": true,
             "searching": true,
             "ordering": true,
             "info": true,
             "lengthMenu": [5, 10, 25, 50],
             "drawCallback": function() {
-                $('#tablaAlimentos').css('width', '50%');
+                $('#tablaEjercicios').css('width', '50%');
             }
         });
     });
@@ -57,17 +50,12 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
     console.error('Error en la petición:', error);
 });
 
-function guardarDatosAlimento(index) {
-    const alimento = AlimentosData[index];
-    localStorage.setItem('AlimentoDatos', JSON.stringify(alimento));     
-    window.location.href = 'ActualizarAlimento.html'; 
-}
 
-function EliminarAlimento(index) {
-    const alimento = AlimentosData[index];
-    const id = alimento.id_alimento; 
-    showMessage("¿Estás seguro de que deseas eliminar este alimento?", function() {
-        fetch(`https://localhost:7007/api/Alimento/EliminarAlimento?id_alimento=${encodeURIComponent(id)}`, {
+function Eliminar(index) {
+    const plan = PlanesData[index];
+    const id = plan.id_plan_alimenticio; 
+    showMessage("¿Estás seguro de que deseas eliminar esta plan alimenticio?", function() {
+        fetch(`https://localhost:7007/api/PlanAlimenticio/EliminarPlan?id_plan_alimenticio=${encodeURIComponent(id)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -75,17 +63,17 @@ function EliminarAlimento(index) {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al eliminar el alimento');
+                throw new Error('Error al eliminar el plan alimenticio');
             }
             return response.json();
         })
         .then(data => {
-            showMessageError(data.mensaje || "Alimento eliminado correctamente.");
+            showMessageError(data.mensaje || "Plan eliminado correctamente.");
             location.reload(); 
         })
         .catch(error => {
             console.error('Error:', error);
-            showMessageError("Hubo un error al eliminar el alimento.");
+            showMessageError("Hubo un error al eliminar el plan.");
         });
     });
 }

@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/AgregarEjercicio.css">
+    <link rel="stylesheet" href="Css/Alimento.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
-    <title>RegistroEjercicio</title>
+    <title>RegistroRutina</title>
 </head>
-<script src="JS/AñadirEjercicio.js"></script>
+<script src="JS/CrearPlan.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
@@ -19,49 +19,42 @@
             <li><a href="MostrarAlimentos.html">Alimentos</a></li>
             <li><a href="MostrarRutinas.html">Rutinas</a></li>
             <li><a href="MostrarPlan.html">Planes Alimenticios</a></li>
-            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+            <li><a href="#" onclick="CerrarSesion()"></a></li>
         </ul>
     </header>
     <section>
-    <form id="AñadirEjercicio-form" method="post">      
-        <h1>Añadir Ejercicio</h1>   
+    <form id="AñadirRutina-form" method="post">      
+        <h1>Crear Plan Alimenticio</h1>   
                               
         <div class="inputbox">
-            <ion-icon name="mail-outline"></ion-icon>
-            <label for="nombre_ejercicio">Nombre Del Ejercicio:</label>
-            <input type="text" id="nombre_ejercicio" name="nombre_ejercicio" required>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
         </div>
         <div class="inputbox">
-            <label for="id_grupo_muscular">Categoria:</label>
-            <select id="id_grupo_muscular" name="id_grupo_muscular" required>
+            <label for="dia"> Día:</label>
+            <select id="dia" name="dia" required>
                 <option value="">Seleccione</option>
-                <option value="1">Hombro</option>
-                <option value="2">Espalda</option>
-                <option value="3">Pectoral</option>
-                <option value="4">Triceps</option>    
-                <option value="5">Pierna</option>    
-                <option value="6">Biceps</option>    
-                <option value="7">Pantorilla</option>    
-                <option value="8">Abdomen</option>    
-                <option value="9">Cardio</option>
-                <option value="10">Rehabilitacion Fisica</option>   
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>    
+                <option value="Sábado">Sábado</option>  
+                <option value="Domingo">Domingo</option>    
             </select>
         </div>
+       
         <div class="inputbox">
-            <label for="apoyo_visual">URL Imagen:</label>
-            <input type="url" id="apoyo_visual" name="apoyo_visual" required>          
-        </div>      
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" required>
+        </div>
       
         <div class="centrarT">
-            <button type="button" class="botonI" onclick="AñadirEjercicio()">Añadir</button>
-
-        
+            <button type="button" class="botonI" onclick="Añadir()">Crear Plan</button>
         </div>
     </form>
-   
-   
-   
     </section>
+   
     <div id="messageModal" class="message-modal">
         <div class="message-modal-content">
             <span class="close" onclick="closeMessageModal()">&times;</span>
@@ -73,7 +66,6 @@
         </div>
     </div>
 
-    
     <div id="cancelModal" class="message-modal">
         <div class="message-modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
@@ -84,7 +76,6 @@
             </div>
         </div>
     </div>
-    
     
 </body>
 </html>

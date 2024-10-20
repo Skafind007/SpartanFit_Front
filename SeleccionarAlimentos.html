@@ -8,12 +8,10 @@
     <link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
     <link rel="stylesheet" href="Css/MostrarUsuario.css">
     <link rel="stylesheet" href="Css/indexacion.css">
-    <title>Ejercicios</title>
+    <title>Seleccionar Alimentos</title>
 </head>
-<script src="JS/MostrarAlimentos.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
@@ -25,57 +23,47 @@
             <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
         </ul>
     </header>
+    
     <div class="centrarT">
-        <table id="alimentos" class="table" border="1">
-            <thead class="encabezado">
-                <tr>
-                    <th class="nombres">Nombre</th>
-                    <th class="nombres">Calorías por Gramo</th>
-                    <th class="nombres">Grasa</th>
-                    <th class="nombres">Carbohidratos</th>
-                    <th class="nombres">Proteína</th>
-                    <th class="nombres">Fibra</th>
-                    <th class="nombres"></th>
-                    <th class="nombres"></th>
-                    <th class="nombres"></th>
-                </tr>
-            </thead>
-            <tbody id="contenido" class="contenido">
-            </tbody>
-        </table>
-    </div>
+        <form id="PlanForm">
+            <table id="alimentos" class="table" border="1">
+                <thead class="encabezado">
+                    <tr>
+                        <th>Seleccionar</th>
+                        <th class="nombres">Nombre</th>
+                        <th class="nombres">Calorías por Gramo</th>
+                        <th class="nombres">Grasa</th>
+                        <th class="nombres">Carbohidratos</th>
+                        <th class="nombres">Proteína</th>
+                        <th class="nombres">Fibra</th>
+                    </tr>
+                </thead>
+                <tbody class="contenido">
    
-    <div class="centrar">
-        <button type="button" class="botonI" onclick="Crear()">Añadir Alimento</button>
-     
+                </tbody>
+            </table>
+        </form>
     </div>
     
+    <div class="centrar">
+        <button type="button" class="botonI" onclick="submitForm()">Crear Plan Alimenticio</button>
+    </div>
+    
+    <script src="JS/MostrarAlimentosPlan.js"></script>
+
     <div id="messageModal" class="message-modal">
         <div class="message-modal-content">
             <span class="close" onclick="closeMessageModal()">&times;</span>
             <p id="messageText"></p>
             <div class="message-buttons">
-                <div class="centrar">
-                    <button class="cancel-btn" id="cancelBtn" onclick="closeMessageModal()">Cancelar</button>
-                    <button class="error-btn" id="confirmBtn">Eliminar</button>    
-                </div>
+                <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
             </div>
         </div>
     </div>
 
-  
-    <div id="messageModalError" class="message-modal">
-        <div class="message-modal-content">
-            <span class="close" onclick="closeMessageModalError()">&times;</span>
-            <p id="errorMessageText"></p>
-            <div class="message-buttons">
-                <div class="centrar">
-                    <button class="success-btn" id="okBtn" onclick="closeMessageModalError()">OK</button>  
-                </div>
-            </div>
-        </div>
+    
+
     </div>
-    
-    
 </body>
 </html>

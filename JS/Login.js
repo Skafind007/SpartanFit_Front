@@ -51,7 +51,7 @@ async function redireccionar() {
                 if (result.id_rol === 1) {
                     window.location.href = 'PrincipalUsuario.html';
                 } else if (result.id_rol === 2) {
-                    window.location.href = 'PrincipalEntrenador.html';
+                    window.location.href = 'MostrarRutinas.html';
                 } else if (result.id_rol === 3) {
                     window.location.href = 'MostrarUsuario.html';
                 }
