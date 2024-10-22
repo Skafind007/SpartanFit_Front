@@ -27,9 +27,6 @@ fetch('https://localhost:7007/api/Alimento/ListAlimentos')
         <td>${alimento?.proteina}</td>
         <td>${alimento?.fibra}</td>
         <td>
-            <img class="ImgEjer" src="${alimento?.apoyo_visual || 'default_image.jpg'}">
-        </td>
-        <td>
             <img src="Css/Imagenes/lapiz.png" onclick='guardarDatosAlimento(${index})'>
         </td>
         <td>

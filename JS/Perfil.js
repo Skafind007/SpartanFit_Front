@@ -139,7 +139,49 @@ function ActualizarObjetivo(){
     window.location.href = 'ActuaMedidas.html';
 }
 function ActualizarDatos(){
-    localStorage.setItem('estatura', result.estatura);
-    localStorage.setItem('peso', result.peso);
-    window.location.href = 'MedidasCorporales.html'; 
+   
+    window.location.href = 'ActualizarPeso.html'; 
+}
+
+async function eliminarUsuario() {
+    const id_usuario = getCookie('userId');
+    try {
+        const response = await fetch(`https://localhost:7007/Usuario/EliminarUsuario?id_usuario=${id_usuario}`, {
+            method: 'POST', 
+            headers: {
+                'Accept': '*/*', 
+            },
+            body: '' 
+        });
+
+        if (response.ok) {
+            showMessage('Usuario eliminado con éxito');
+            window.location.href="index.HTML";
+            
+            console.log('Usuario eliminado con éxito');
+        } else {
+            showMessage('Error al eliminar el usuario');
+            console.error('Error:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error al hacer la solicitud:', error);
+        showMessage('Hubo un problema al intentar eliminar el usuario');
+    }
+}
+
+function showMessage(message, type) {
+    const messageModal = document.getElementById('messageModal');
+    messageText.textContent = message;
+    if (type === 'success') {
+        successBtn.style.display = 'block';
+        errorBtn.style.display = 'none';
+    } else {
+        successBtn.style.display = 'none';
+        errorBtn.style.display = 'block';
+    }
+    messageModal.style.display = 'flex';
+}
+
+function closeMessageModal() {
+    document.getElementById('messageModal').style.display = 'none';
 }

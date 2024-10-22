@@ -128,7 +128,7 @@ function getSelectedCheckboxIds() {
         })
         .then(data => {
             console.log('Rutina registrada con éxito:', data);
-            window.location.href = "MostrarEjercicios.html";
+            window.location.href = "MostrarRutinas.html";
         })
         .catch(error => {
             console.error('Error al registrar la rutina:', error);
