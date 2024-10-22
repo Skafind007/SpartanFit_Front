@@ -132,6 +132,7 @@ showMessageError("Hubo un error al eliminar el ejercicio.");
 function CerrarSesion() {
 deleteCookie('userRole');
 deleteCookie('userId');
+localStorage.clear();
 window.location.href = 'Login.html'; 
 }
 

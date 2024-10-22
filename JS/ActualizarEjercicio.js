@@ -7,50 +7,53 @@ document.addEventListener('DOMContentLoaded', function() {
             ActualizarEjercicio(); 
         }
     });
-    });
+});
 
-    async function ActualizarEjercicio(event) {
-        event.preventDefault();  
+function ActualizarEjercicio() {
+    // Obtener los valores del formulario
+    const id_ejercicio = document.getElementById('id_ejercicio').value;
+    const nombre_ejercicio = document.getElementById('nombre_ejercicio').value;
+    const id_grupo_muscular = document.getElementById('id_grupo_muscular').value;
+    const apoyo_visual = document.getElementById('apoyo_visual').value;
+
+    // Validar que todos los campos estén completos
+    if (id_ejercicio && nombre_ejercicio && id_grupo_muscular && apoyo_visual) {
         
-        const form = document.getElementById('ActualizarEjercicio-form');
-        
-        if (form.checkValidity()) {
-            const formData = {
-                id_ejercicio: document.getElementById('id_ejercicio').value,
-                nombre_ejercicio: document.getElementById('nombre_ejercicio').value,
-                id_grupo_muscular: document.getElementById('id_grupo_muscular').value,
-                apoyo_visual: document.getElementById('apoyo_visual').value
-            };
-    
-            try {
-                const response = await fetch('https://localhost:7007/api/Ejercicio/ActualizarEjercicio',
-                     {
-                    method: 'POST',  
-                    headers: {
-                        'Content-Type': 'application/json', 
-                    },
-                    body: JSON.stringify(formData)  
-                });
-    
-                if (response.ok) {
-                    const result = await response.json();
-                    console.log(result.mensaje);  
-                    localStorage.removeItem('EjercicioDatos');
-                    window.location.href = 'MostrarEjercicios.html';  
-                } else {
-                    const error = await response.text();
-                    showMessage(`Error: ${error}`, 'error');
-                }
-            } catch (error) {
-                console.error('Fetch error:', error);
-                showMessage(`Error: ${error.message || 'Desconocido'}`, 'error');
+        // Crear el objeto FormData
+        const formData = new FormData();
+        formData.append('id_ejercicio', id_ejercicio);
+        formData.append('nombre_ejercicio', nombre_ejercicio);
+        formData.append('id_grupo_muscular', id_grupo_muscular);
+        formData.append('apoyo_visual', apoyo_visual);
+
+      
+        fetch('https://localhost:7007/api/Ejercicio/ActualizarEjercicio', {
+            method: 'POST', 
+            body: formData
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json(); 
+            } else {
+                throw new Error('Error en la respuesta del servidor: ' + response.status);
             }
-        } else {
-            showMessage('Por favor, escribe todos los campos.');
-        }
+        })
+        .then(data => {
+            console.log('Actualización exitosa:', data.mensaje); 
+            localStorage.removeItem('EjercicioDatos'); 
+            window.location.href = 'MostrarEjercicios.html'; 
+        })
+        .catch(error => {
+            console.error('Error en el fetch:', error); 
+            showMessage('Error: ' + error.message, 'error'); 
+        });
+        
+    } else {
+        showMessage('Por favor, completa todos los campos.', 'error'); 
     }
-    
-    
+}
+
+
 
     function showMessage(message, type) {
         const messageText = document.getElementById('messageText');
@@ -78,6 +81,7 @@ function closeMessageModal() {
  function CerrarSesion() {
     deleteCookie('userRole');
     localStorage.removeItem('EjercicioDatos');
+    localStorage.clear();
     window.location.href = 'Login.html'; 
 }
 

@@ -143,6 +143,7 @@
    function CerrarSesion() {
     deleteCookie('userRole');
     deleteCookie('userId');
+    localStorage.clear();
     window.location.href = 'Login.html'; 
 }
      

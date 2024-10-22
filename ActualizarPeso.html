@@ -3,79 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/Perfil.css">
+    <link rel="stylesheet" href="Css/FormUsuario.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <title>Actualizar Medidas</title>
 </head>
-<script src="JS/Perfil.js"></script>
+<script src="JS/ActualizarMedidas.js"></script>
 <body>
     <header>
         <a href="#" class="logo">SPARTANFIT</a>
         <ul>
-            <li><a href="PrincipalUsuario.html">Rutina</a></li>
+            <li><a href="RutinaUsuario.html">Rutina</a></li>
             <li><a href="Alimentos.html">Plan Alimenticio</a></li>
             <li><a href="Perfil.html">Perfil</a></li>
-            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+            <li><a href="#" onclick="CerrarSesion()"> Cerrar Sesion</a></li>
         </ul>
-    </header>   
-    
-    <div class="dividir">
-        <div class="Cuadros">
-            <h3>Nombres</h3>
-            <p id="nombres"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Apellidos</h3>
-            <p id="apellidos"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Fecha de Nacimiento</h3>
-            <p id="fechaNacimiento"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Género</h3>
-            <p id="genero"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Estatura</h3>
-            <p id="estatura"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Peso</h3>
-            <p id="peso"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Objetivo</h3>
-            <p id="objetivo"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Nivel de Entrenamiento</h3>
-            <p id="nivelEntrenamiento"></p>  
-        </div>
-    
-        <div class="Cuadros">
-            <h3>Rehabilitación</h3>
-            <p id="rehabilitacion"></p>  
-        </div>       
-    </div>
-    <br><br>
-    <div class="centrarB">
-     <button type="button" class="botonI" onclick="ActualizarObjetivo()">Actualizar Objetivos</button>
-        <button type="button" class="botonI" onclick="ActualizarDatos()">Medidas Corporales</button>
-        <button type="button" class="botonI" onclick="eliminarUsuario()()">Eliminar Cuenta</button>
-    </div>
+    </header>  
+    <section>
+        <form id="ActualizarMedidas-form" method="post" onsubmit="return ActuaMedidas(event)">      
+            <h1>Actualizar Medidas</h1>   
+                              
+            <div class="inputbox">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" name="peso" placeholder="Ingrese su peso" min="0" step="0.1" required>
+            </div>
 
+            <div class="inputbox">
+                <label for="estatura">Estatura (cm):</label>
+                <input type="number" id="estatura" name="estatura" placeholder="Ingrese su estatura" min="0" step="0.1" required>
+            </div>    
 
+            <div class="centrarT">
+                <button type="submit" class="botonI">Actualizar</button>
+            </div>
+        </form>
+    
     <div id="messageModal" class="message-modal">
         <div class="centrar">
         <div class="message-modal-content">
