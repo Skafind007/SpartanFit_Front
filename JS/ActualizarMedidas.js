@@ -19,7 +19,7 @@ async function ActuaMedidas() {
 
     try {
         // Hacer la solicitud POST con fetch
-        const response = await fetch('https://localhost:7007/Usuario/ActualizarObjetivo', {
+        const response = await fetch('https://localhost:7007/Usuario/ActualizarDatos', {
             method: 'POST',
             body: formData,
             headers: {
