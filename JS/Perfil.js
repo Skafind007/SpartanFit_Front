@@ -20,6 +20,13 @@ function deleteCookie(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
 }
 
+window.onload = function() {
+    const userRole = getCookie('userRole');
+
+    if (userRole !== '1') {
+        window.location.href = 'Error.html'; 
+    }
+};
 function CerrarSesion() {
     deleteCookie('userRole');
     deleteCookie('userId');

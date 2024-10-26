@@ -3,11 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ERROR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 5rem;
+            color: #e74c3c;
+        }
+
+        br {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .container h1 {
+            margin-bottom: 20px;
+        }
+
+        .container br {
+            margin-bottom: 10px;
+        }
+
+        .fade {
+            opacity: 0;
+            animation: fade-in 2s forwards;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>ERROR</h1>
-    <BR>ESTA ACCEDIENDO AL SISTEMA ILEGALMENTE</BR>
+    <div class="container fade">
+        <h1>ERROR</h1>
+        <br>ESTÁ ACCEDIENDO AL SISTEMA ILEGALMENTE</br>
+    </div>
 </body>
 <script>
     setTimeout(() => {
