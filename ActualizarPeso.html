@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/FormUsuario.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>Actualizar Medidas</title>
+</head>
+<script src="JS/ActualizarMedidas.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="RutinaUsuario.html">Rutina</a></li>
+            <li><a href="Alimentos.html">Plan Alimenticio</a></li>
+            <li><a href="Perfil.html">Perfil</a></li>
+            <li><a href="#" onclick="CerrarSesion()"> Cerrar Sesion</a></li>
+        </ul>
+    </header>  
+    <section>
+        <form id="ActualizarMedidas-form" method="post" onsubmit="return ActuaMedidas(event)">      
+            <h1>Actualizar Medidas</h1>   
+                              
+            <div class="inputbox">
+                <label for="peso">Peso (kg):</label>
+                <input type="number" id="peso" name="peso" placeholder="Ingrese su peso" min="0" step="0.1" required>
+            </div>
+
+            <div class="inputbox">
+                <label for="estatura">Estatura (cm):</label>
+                <input type="number" id="estatura" name="estatura" placeholder="Ingrese su estatura" min="0" step="0.1" required>
+            </div>    
+
+            <div class="centrarT">
+                <button type="submit" class="botonI">Actualizar</button>
+            </div>
+        </form>
+    
+    <div id="messageModal" class="message-modal">
+        <div class="centrar">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+          </div>
+            </div>
+        </div>
+    </div>
+    
+        <div id="cancelModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p>¿Estás seguro de que deseas cancelar?</p>
+                <div class="modal-buttons">
+                    <button class="confirm-btn" onclick="cancelar()">Sí, cancelar</button>
+                    <button class="cancel-btn" onclick="closeModal()">No, regresar</button>
+                </div>
+            </div>
+        </div> 
+</body>
+</html>

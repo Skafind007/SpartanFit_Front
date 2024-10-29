@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Css/Perfil.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<script src="JS/Perfil.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="PrincipalUsuario.html">Rutina</a></li>
+            <li><a href="Alimentos.html">Plan Alimenticio</a></li>
+            <li><a href="Perfil.html">Perfil</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>   
+    
+    <div class="dividir">
+        <div class="Cuadros">
+            <h3>Nombres</h3>
+            <p id="nombres"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Apellidos</h3>
+            <p id="apellidos"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Fecha de Nacimiento</h3>
+            <p id="fechaNacimiento"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Género</h3>
+            <p id="genero"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Estatura</h3>
+            <p id="estatura"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Peso</h3>
+            <p id="peso"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Objetivo</h3>
+            <p id="objetivo"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Nivel de Entrenamiento</h3>
+            <p id="nivelEntrenamiento"></p>  
+        </div>
+    
+        <div class="Cuadros">
+            <h3>Rehabilitación</h3>
+            <p id="rehabilitacion"></p>  
+        </div>       
+    </div>
+    <br><br>
+    <div class="centrarB">
+     <button type="button" class="botonI" onclick="ActualizarObjetivo()">Actualizar Objetivos</button>
+        <button type="button" class="botonI" onclick="ActualizarDatos()">Medidas Corporales</button>
+        <button type="button" class="botonI" onclick="eliminarUsuario()()">Eliminar Cuenta</button>
+    </div>
+
+
+    <div id="messageModal" class="message-modal">
+        <div class="centrar">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+          </div>
+            </div>
+        </div>
+    </div>
+    
+        <div id="cancelModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <p>¿Estás seguro de que deseas cancelar?</p>
+                <div class="modal-buttons">
+                    <button class="confirm-btn" onclick="cancelar()">Sí, cancelar</button>
+                    <button class="cancel-btn" onclick="closeModal()">No, regresar</button>
+                </div>
+            </div>
+        </div> 
+</body>
+</html>

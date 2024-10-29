@@ -1,4 +1,4 @@
-/* Aplicar colores alternos para las filas pares e impares en las tablas */
+
 #tablaEjercicios tbody tr:nth-child(even),
 #tablaAlimentos tbody tr:nth-child(even),
 #tablaPersonas tbody tr:nth-child(even),

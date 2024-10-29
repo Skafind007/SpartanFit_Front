@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/AgregarAlimento.css">
+    <title>Actualizar Alimento</title>
+</head>
+<script src="JS/ActualizarAlimento.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarEjercicios.html">Ejercicios</a></li>
+            <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+            <li><a href="MostrarRutinas.html">Rutinas</a></li>
+            <li><a href="MostrarPlan.html">Planes Alimenticios</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    <section>
+        <div class="form-container">
+            <h3>Actualizar Alimento</h3>
+            <form id="ActualizarAlimento-form" method="post">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nombre_alimento">Nombre:</label>
+                        <input type="text" id="nombre_alimento" name="nombre_alimento" placeholder="Nombre del alimento" required>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="calorias_x_gramo">Calorías por Gramo:</label>
+                        <input type="number" id="calorias_x_gramo" name="calorias_x_gramo" placeholder="Calorías por gramo" required>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="grasa">Grasa:</label>
+                        <input type="number" id="grasa" name="grasa" placeholder="Grasa (g)" required>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="carbohidrato">Carbohidratos:</label>
+                        <input type="number" id="carbohidrato" name="carbohidrato" placeholder="Carbohidratos (g)" required>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="proteina">Proteína:</label>
+                        <input type="number" id="proteina" name="proteina" placeholder="Proteína (g)" required>
+                    </div>
+                </div>
+    
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fibra">Fibra:</label>
+                        <input type="number" id="fibra" name="fibra" placeholder="Fibra (g)" required>
+                    </div>
+                </div>
+    
+                <input type="number" id="id_alimento" name="id_alimento" hidden>
+                <input type="number" id="id_categoria_alimento" name="id_categoria_alimento" hidden>
+     </form>
+         <br><br>
+                <div class="centrar">
+                    <button type="button" class="botonI" onclick="ActualizarAlimento()">Actualizar</button>
+                </div>
+       
+        </div>
+    </section>
+    
+    
+    <!-- Modal de mensajes -->
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                    <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                    <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Cargar datos del alimento desde localStorage
+        const alimentoDatos = localStorage.getItem('AlimentoDatos');
+        if (alimentoDatos) {  
+            const alimento = JSON.parse(alimentoDatos);
+            document.getElementById('id_alimento').value = alimento.id_alimento;
+            document.getElementById('nombre_alimento').value = alimento.nombre;
+            document.getElementById('calorias_x_gramo').value = alimento.calorias_x_gramo;
+            document.getElementById('grasa').value = alimento.grasa;
+            document.getElementById('carbohidrato').value = alimento.carbohidrato;
+            document.getElementById('proteina').value = alimento.proteina;
+            document.getElementById('fibra').value = alimento.fibra;
+            document.getElementById('id_categoria_alimento').value = alimento.id_categoria_alimento;
+        } else {
+            console.log("No se encontraron datos del alimento en el local storage.");
+        }
+    </script>
+</body>
+</html>

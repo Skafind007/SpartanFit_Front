@@ -145,10 +145,11 @@ form {
 
 
 
-.centrar{
-text-align: center;
-align-items: center;
-
+  .centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 .form-group label {
     margin-bottom: 0.5rem;

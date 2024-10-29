@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/AgregarEjercicio.css">
+    <title>Actualizar Ejercicio</title>
+</head>
+<script src="JS/ActualizarEjercicio.js"></script>
+<body>
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarEjercicios.html">Ejercicios</a></li>
+            <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+            <li><a href="MostrarRutinas.html">Rutinas</a></li>
+            <li><a href="MostrarPlan.html">Planes Alimenticios</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+    <section>
+        <form id="ActualizarEjercicio-form" method="post">      
+            <h1>Ejercicio</h1>   
+                <input type="number" id="id_ejercicio" name="id_ejercicio" value="" hidden> 
+                <input type="number" id="id_grupo_muscular" name="id_grupo_muscular" value="" hidden>                          
+            <div class="inputbox">
+                <ion-icon name="mail-outline"></ion-icon>
+                <input type="text" id="nombre_ejercicio" name="nombre_ejercicio" value="">
+                <label for="nombre_ejercicio">Nombre:</label>
+            </div>
+            <div class="inputbox">
+                <input type="url" id="apoyo_visual" name="apoyo_visual" value="">
+                <label for="apoyo_visual">Apoyo Visual:</label>
+            </div>      
+          
+            <div class="centrarT">
+            <button  class="botonI" onclick="ActualizarEjercicio()">Actualizar</button>
+            
+            </div>
+        </form>
+    </section>
+    <div id="messageModal" class="message-modal">
+        <div class="message-modal-content">
+            <span class="close" onclick="closeMessageModal()">&times;</span>
+            <p id="messageText"></p>
+            <div class="message-buttons">
+                <div class="centrar">
+                           <button class="success-btn" id="successBtn" style="display:none;" onclick="closeMessageModal()">OK</button>
+                <button class="error-btn" id="errorBtn" style="display:none;" onclick="closeMessageModal()">OK</button>    
+                </div>
+     
+            </div>
+        </div>
+    </div>
+   <script>
+const ejercicioDatos = localStorage.getItem('EjercicioDatos');
+
+    if (ejercicioDatos) {  
+    const ejercicio = JSON.parse(ejercicioDatos);
+
+    document.getElementById('id_ejercicio').value = ejercicio.id_ejercicio;
+    document.getElementById('nombre_ejercicio').value = ejercicio.nombre_ejercicio;
+    document.getElementById('id_grupo_muscular').value = ejercicio.id_grupo_muscular;
+    document.getElementById('apoyo_visual').value = ejercicio.apoyo_visual;
+} else {
+    console.log("No se encontraron datos del ejercicio en el local storage.");
+}
+   </script>
+    
+</body>
+</html>

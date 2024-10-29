@@ -46,16 +46,14 @@ async function redireccionar() {
                 const result = await response.json();
                 console.log(result);
 
-          
+                setCookie('userId', result.id_usuario, 7); 
+                setCookie('userRole', result.id_rol, 7); 
                 if (result.id_rol === 1) {
                     window.location.href = 'PrincipalUsuario.html';
-                    setCookie('userRole', result.id_rol, 7); 
                 } else if (result.id_rol === 2) {
-                    window.location.href = 'PrincipalEntrenador.html';
-                    setCookie('userRole', result.id_rol, 7);
+                    window.location.href = 'MostrarRutinas.html';
                 } else if (result.id_rol === 3) {
                     window.location.href = 'MostrarUsuario.html';
-                    setCookie('userRole', result.id_rol, 7);
                 }
 
             } else {
