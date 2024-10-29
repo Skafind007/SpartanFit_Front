@@ -180,3 +180,26 @@
               .catch(error => console.error('Error al descargar el PDF:', error)); 
           }
   
+          function sendPdf() {
+            const id_usuario = getCookie("userId");
+            fetch(`https://localhost:7007/api/Administrador/CorreoReporteEntrenadores?id_usuario=${encodeURIComponent(id_usuario)}`, {
+                method: 'POST',
+                headers: {
+                  'accept': '*/*'
+                },
+                body: '' 
+              })
+              .then(response => {
+                if (!response.ok) {
+                  throw new Error('Error en la solicitud: ' + response.statusText);
+                }
+                return response.json();
+              })
+              .then(data => {
+                console.log('Respuesta recibida:', data);
+              })
+              .catch(error => {
+                console.error('Hubo un error con la solicitud:', error);
+              });
+          }
+          
