@@ -27,6 +27,9 @@ fetch('https://localhost:7007/api/PlanAlimenticio/MostrarPlanesAlimenticios')
             <td>
                 <img src="Css/Imagenes/eliminar.png" onclick='Eliminar(${index})' alt="Eliminar">
             </td>
+            <td>
+                <img src="Css/Imagenes/lupa.png" onclick='Ver(${index})' alt="ver">
+            </td>
         </tr>`;
     });
 
@@ -49,6 +52,14 @@ fetch('https://localhost:7007/api/PlanAlimenticio/MostrarPlanesAlimenticios')
 .catch(error => {
     console.error('Error en la petición:', error);
 });
+
+function Ver(index) {
+    const plan = PlanesData[index];
+    const id = plan.id_plan_alimenticio; 
+    localStorage.clear();
+   localStorage.setItem("id",id)
+   window.location.href="DetallesA.html"
+}
 
 
 function Eliminar(index) {

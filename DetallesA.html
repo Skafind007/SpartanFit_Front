@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Plan Alimenticio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Css/Alimenn.css">
+</head>
+<body>
+ 
+    <header>
+        <a href="#" class="logo">SPARTANFIT</a>
+        <ul>
+            <li><a href="MostrarEjercicios.html">Ejercicios</a></li>
+            <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+            <li><a href="MostrarRutinas.html">Rutinas</a></li>
+            <li><a href="MostrarPlan.html">Planes Alimenticios</a></li>
+            <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+        </ul>
+    </header>
+
+    <main class="main-container">
+    
+        <div class="rutina-container" id="plan">
+ 
+            <p id="diaPlan"></p>
+        
+        </div>
+
+    
+        <div class="ejercicios-container" id="alimentosContainer">
+            <!-- Los alimentos se agregarán aquí dinámicamente desde el script -->
+        </div>
+    </main>
+
+    <script src="JS/verA.js" defer></script>
+</body>
+</html>

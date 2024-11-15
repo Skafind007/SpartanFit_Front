@@ -67,6 +67,9 @@ fetch('https://localhost:7007/MostrarRutinas')
             <td>
                 <img src="Css/Imagenes/eliminar.png" onclick='EliminarRutina(${index})' alt="Eliminar Rutina">
             </td>
+                <td>
+                <img src="Css/Imagenes/lupa.png" onclick='VerRutina(${index})' alt="Ver Rutina">
+            </td>
         </tr>`;
     });
 
@@ -118,6 +121,13 @@ function EliminarRutina(index) {
             showMessageError("Hubo un error al eliminar la rutina.");
         });
     });
+}
+
+function VerRutina(index) {
+    const rutina = RutinaData[index];
+    const id = rutina.id_rutina; 
+   localStorage.setItem("id_rutina",id)
+   window.location.href="DetallesR.html"
 }
 
 function showMessage(message, onConfirm) {

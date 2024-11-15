@@ -1,0 +1,46 @@
+
+ 
+
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="Css/Rutina.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Rowdies:wght@300;400;700&family=Yatra+One&display=swap" rel="stylesheet">
+   <title>Detalles Rutina</title>
+    </head>
+    <body>
+    
+        <header>
+            <a href="#" class="logo">SPARTANFIT</a>
+            <ul>
+                <li><a href="MostrarEjercicios.html">Ejercicios</a></li>
+                <li><a href="MostrarAlimentos.html">Alimentos</a></li>
+                <li><a href="MostrarRutinas.html">Rutinas</a></li>
+                <li><a href="MostrarPlan.html">Planes Alimenticios</a></li>
+                <li><a href="#" onclick="CerrarSesion()">Cerrar sesión</a></li>
+            </ul>
+        </header>
+    
+        <main>
+            <!-- Contenedor de la rutina -->
+            <div class="rutina-container">
+                <h2 id="nombreRutina">Nombre de la Rutina</h2>
+                <p id="descripcionRutina">Descripción de la rutina aparecerá aquí.</p>
+                <p id="diaRutina">Día de la rutina</p>
+            </div>
+    
+            <!-- Contenedor de los ejercicios -->
+            <div class="ejercicios-container" id="ejerciciosContainer">
+                <!-- Los ejercicios se añadirán aquí dinámicamente -->
+            </div>
+        </main>
+    
+         <script src="JS/verRutina.js" defer></script>
+    </body>
+    </html>
+    
