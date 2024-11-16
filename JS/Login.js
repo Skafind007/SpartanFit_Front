@@ -38,7 +38,7 @@ async function redireccionar() {
 
     if (form.checkValidity()) { 
         try {
-            const response = await fetch(`https://localhost:7007/api/Persona/Traer-Datos-Personas?correo=${encodeURIComponent(correo)}`, {
+            const response = await fetch(`http://localhost:7007/api/Persona/Traer-Datos-Personas?correo=${encodeURIComponent(correo)}`, {
                 method: 'GET'
             });
             
@@ -95,7 +95,7 @@ async function IniciarSesion() {
         formData.set('contrasena', passwordBinario);
 
         try {
-            const response = await fetch('https://localhost:7007/api/Persona/IniciarSesion', { 
+            const response = await fetch('http://localhost:7007/api/Persona/IniciarSesion', { 
                 method: 'POST',
                 body: formData
             });

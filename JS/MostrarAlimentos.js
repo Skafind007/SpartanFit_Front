@@ -6,7 +6,7 @@ function Crear(){
 let AlimentosData = [];
 
 
-fetch('https://localhost:7007/api/Alimento/ListAlimentos')
+fetch('http://localhost:7007/api/Alimento/ListAlimentos')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -64,7 +64,7 @@ function EliminarAlimento(index) {
     const alimento = AlimentosData[index];
     const id = alimento.id_alimento; 
     showMessage("¿Estás seguro de que deseas eliminar este alimento?", function() {
-        fetch(`https://localhost:7007/api/Alimento/EliminarAlimento?id_alimento=${encodeURIComponent(id)}`, {
+        fetch(`http://localhost:7007/api/Alimento/EliminarAlimento?id_alimento=${encodeURIComponent(id)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

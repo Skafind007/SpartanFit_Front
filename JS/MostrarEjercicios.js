@@ -6,7 +6,7 @@ function Crear(){
 let EjerciciosData = [];
 
 
-fetch('https://localhost:7007/api/Ejercicio/ListEjercicios')
+fetch('http://localhost:7007/api/Ejercicio/ListEjercicios')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -103,7 +103,7 @@ function Eliminar(index) {
 const ejercicio = EjerciciosData[index];
 const id = ejercicio.id_ejercicio; 
 showMessage("¿Estás seguro de que deseas eliminar este ejercicio?", function() {
-fetch(`https://localhost:7007/api/Ejercicio/EliminarEjercicio?id_ejercicio=${encodeURIComponent(id)}`, {
+fetch(`http://localhost:7007/api/Ejercicio/EliminarEjercicio?id_ejercicio=${encodeURIComponent(id)}`, {
 method: 'POST',
 headers: {
     'Content-Type': 'application/json',

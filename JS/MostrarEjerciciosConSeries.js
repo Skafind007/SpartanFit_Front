@@ -2,7 +2,7 @@ let EjerciciosData = [];
 let selectedCheckboxIDs = [];
 
 // Cargar los ejercicios desde la API
-fetch('https://localhost:7007/api/Ejercicio/ListEjercicios')
+fetch('http://localhost:7007/api/Ejercicio/ListEjercicios')
     .then(response => {
         if (!response.ok) {
             throw new Error('Error en la respuesta de la API');
@@ -116,7 +116,7 @@ function getSelectedCheckboxIds() {
         });
 
         // Enviar el formData al servidor
-        fetch('https://localhost:7007/RegistrarRutina', {
+        fetch('http://localhost:7007/RegistrarRutina', {
             method: 'POST',
             body: formData
         })

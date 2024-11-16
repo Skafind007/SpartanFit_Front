@@ -23,7 +23,7 @@ async function mostrarRutinaDia() {
 
     try {
 
-        const response = await fetch(`https://localhost:7007/Usuario/MostrarRutinaDia?id_usuario=${userId}`);
+        const response = await fetch(`http://localhost:7007/Usuario/MostrarRutinaDia?id_usuario=${userId}`);
 
         if (!response.ok) {
  

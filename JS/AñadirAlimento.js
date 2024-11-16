@@ -29,7 +29,7 @@ function AñadirAlimento() {
         console.log('AlimentoData:', alimento); 
 
         
-        fetch('https://localhost:7007/api/Alimento/RegistrarAlimento', { 
+        fetch('http://localhost:7007/api/Alimento/RegistrarAlimento', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

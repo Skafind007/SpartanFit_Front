@@ -72,7 +72,7 @@ if (usuarioData.rehabilitacion == 1) {
 
 
 console.log('usuarioData:', usuarioData); 
-fetch('https://localhost:7007/Usuario/Registrar', { 
+fetch('http://localhost:7007/Usuario/Registrar', { 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

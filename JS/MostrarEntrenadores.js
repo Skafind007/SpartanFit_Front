@@ -6,7 +6,7 @@
         let entrenadoresData = [];
 
      
-        fetch('https://localhost:7007/api/Administrador/ListEntrenadores')
+        fetch('http://localhost:7007/api/Administrador/ListEntrenadores')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Error en la respuesta de la API');
@@ -114,7 +114,7 @@
     const entrenador = entrenadoresData[index];
     const id_usuario = entrenador.id_usuario; 
     showMessage("¿Estás seguro de que deseas eliminar este entrenador?", function() {
-    fetch(`https://localhost:7007/api/Administrador/EliminarEntrenador?id=${encodeURIComponent(id_usuario)}`, {
+    fetch(`http://localhost:7007/api/Administrador/EliminarEntrenador?id=${encodeURIComponent(id_usuario)}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -166,7 +166,7 @@
         };
 
         function downloadPdf() {
-            fetch('https://localhost:7007/api/Administrador/ReporteEntrenadores')
+            fetch('http://localhost:7007/api/Administrador/ReporteEntrenadores')
               .then(response => response.blob())  
               .then(blob => {
                 const url = window.URL.createObjectURL(blob);
@@ -182,7 +182,7 @@
   
           function sendPdf() {
             const id_usuario = getCookie("userId");
-            fetch(`https://localhost:7007/api/Administrador/CorreoReporteEntrenadores?id_usuario=${encodeURIComponent(id_usuario)}`, {
+            fetch(`http://localhost:7007/api/Administrador/CorreoReporteEntrenadores?id_usuario=${encodeURIComponent(id_usuario)}`, {
                 method: 'POST',
                 headers: {
                   'accept': '*/*'

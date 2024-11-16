@@ -1,6 +1,6 @@
 
        
-fetch('https://localhost:7007/api/Administrador/ListUsuarios')
+fetch('http://localhost:7007/api/Administrador/ListUsuarios')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -122,7 +122,7 @@ function CerrarSesion() {
 }
 
 function downloadPdf() {
-    fetch('https://localhost:7007/api/Administrador/ReporteUsuarios')
+    fetch('http://localhost:7007/api/Administrador/ReporteUsuarios')
       .then(response => response.blob())  
       .then(blob => {
         const url = window.URL.createObjectURL(blob);
@@ -138,7 +138,7 @@ function downloadPdf() {
 
   function sendPdf() {
     const id_usuario = getCookie("userId");
-    fetch(`https://localhost:7007/api/Administrador/CorreoReporteUsuarios?id_usuario=${encodeURIComponent(id_usuario)}`, {
+    fetch(`http://localhost:7007/api/Administrador/CorreoReporteUsuarios?id_usuario=${encodeURIComponent(id_usuario)}`, {
         method: 'POST',
         headers: {
           'accept': '*/*'

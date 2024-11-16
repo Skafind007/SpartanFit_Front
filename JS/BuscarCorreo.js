@@ -16,7 +16,7 @@
                 const formData = new FormData(form);
 
                 try {
-                    const response = await fetch('https://localhost:7007/api/Persona/EnviarCodigo', { 
+                    const response = await fetch('http://localhost:7007/api/Persona/EnviarCodigo', { 
                         method: 'POST',
                         body: formData
                     });

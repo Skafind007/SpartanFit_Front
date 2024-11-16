@@ -17,7 +17,7 @@ async function mostrarPlanAlimenticioDia() {
     }
 
     try {
-        const response = await fetch(`https://localhost:7007/Usuario/MostrarPlanAlimenticioDia?id_usuario=${userId}`);
+        const response = await fetch(`http://localhost:7007/Usuario/MostrarPlanAlimenticioDia?id_usuario=${userId}`);
 
         if (!response.ok) {
             if (response.status === 404) {

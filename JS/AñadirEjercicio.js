@@ -24,7 +24,7 @@ const ejercicio = {
 
 console.log('EjercicioData:', ejercicio); 
 
-fetch('https://localhost:7007/api/Ejercicio/RegistrarEjercicio', { 
+fetch('http://localhost:7007/api/Ejercicio/RegistrarEjercicio', { 
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

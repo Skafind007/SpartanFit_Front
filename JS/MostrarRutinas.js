@@ -4,7 +4,7 @@ function Crear(){
 }
 let RutinaData = [];
 
-fetch('https://localhost:7007/MostrarRutinas')
+fetch('http://localhost:7007/MostrarRutinas')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -100,7 +100,7 @@ function EliminarRutina(index) {
     const rutina = RutinaData[index];
     const id = rutina.id_rutina; 
     showMessage("¿Estás seguro de que deseas eliminar esta rutina?", function() {
-        fetch(`https://localhost:7007/EliminarRutina?id_rutina=${encodeURIComponent(id)}`, {
+        fetch(`http://localhost:7007/EliminarRutina?id_rutina=${encodeURIComponent(id)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

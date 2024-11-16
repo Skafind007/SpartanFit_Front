@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     try {
-        const response = await fetch(`https://localhost:7007/api/PlanAlimenticio/DetallesPlanAlimenticio?id_plan_alimenticio=${id_plan_alimenticio}`);
+        const response = await fetch(`http://localhost:7007/api/PlanAlimenticio/DetallesPlanAlimenticio?id_plan_alimenticio=${id_plan_alimenticio}`);
         if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
 
         const data = await response.json();

@@ -5,7 +5,7 @@ function Crear(){
 let PlanesData = [];
 
 
-fetch('https://localhost:7007/api/PlanAlimenticio/MostrarPlanesAlimenticios')
+fetch('http://localhost:7007/api/PlanAlimenticio/MostrarPlanesAlimenticios')
 .then(response => {
     if (!response.ok) {
         throw new Error('Error en la respuesta de la API');
@@ -66,7 +66,7 @@ function Eliminar(index) {
     const plan = PlanesData[index];
     const id = plan.id_plan_alimenticio; 
     showMessage("¿Estás seguro de que deseas eliminar esta plan alimenticio?", function() {
-        fetch(`https://localhost:7007/api/PlanAlimenticio/EliminarPlan?id_plan_alimenticio=${encodeURIComponent(id)}`, {
+        fetch(`http://localhost:7007/api/PlanAlimenticio/EliminarPlan?id_plan_alimenticio=${encodeURIComponent(id)}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

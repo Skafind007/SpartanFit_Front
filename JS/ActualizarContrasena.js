@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.set('contrasena', passwordBinario);
 
                 try {
-                    const response = await fetch('https://localhost:7007/api/Persona/RestablecerContrasena', { 
+                    const response = await fetch('http://localhost:7007/api/Persona/RestablecerContrasena', { 
                         method: 'POST',
                         body: formData
                     });

@@ -27,7 +27,7 @@ function ActualizarEjercicio() {
         formData.append('apoyo_visual', apoyo_visual);
 
       
-        fetch('https://localhost:7007/api/Ejercicio/ActualizarEjercicio', {
+        fetch('http://localhost:7007/api/Ejercicio/ActualizarEjercicio', {
             method: 'POST', 
             body: formData
         })

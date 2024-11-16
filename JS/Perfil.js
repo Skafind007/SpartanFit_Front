@@ -43,7 +43,7 @@ async function perfil() {
     
     if (userId) { 
         try {
-            const response = await fetch(`https://localhost:7007/Usuario/Traer-Datos-Usuario?id_usuario=${encodeURIComponent(userId)}`, {
+            const response = await fetch(`http://localhost:7007/Usuario/Traer-Datos-Usuario?id_usuario=${encodeURIComponent(userId)}`, {
                 method: 'GET'
             });
 
@@ -153,7 +153,7 @@ function ActualizarDatos(){
 async function eliminarUsuario() {
     const id_usuario = getCookie('userId');
     try {
-        const response = await fetch(`https://localhost:7007/Usuario/EliminarUsuario?id_usuario=${id_usuario}`, {
+        const response = await fetch(`http://localhost:7007/Usuario/EliminarUsuario?id_usuario=${id_usuario}`, {
             method: 'POST', 
             headers: {
                 'Accept': '*/*', 

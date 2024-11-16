@@ -2,7 +2,7 @@ let AlimentosData = [];
 let selectedCheckboxIDs = [];
 
 // Cargar los alimentos desde la API
-fetch('https://localhost:7007/api/Alimento/ListAlimentos')
+fetch('http://localhost:7007/api/Alimento/ListAlimentos')
     .then(response => {
         if (!response.ok) {
             throw new Error('Error en la respuesta de la API');
@@ -74,7 +74,7 @@ function submitForm() {
         });
 
 
-        fetch('https://localhost:7007/api/PlanAlimenticio/RegistrarPlanAlimenticio', {
+        fetch('http://localhost:7007/api/PlanAlimenticio/RegistrarPlanAlimenticio', {
             method: 'POST',
             body: formData
         })

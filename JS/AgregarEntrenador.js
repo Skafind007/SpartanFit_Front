@@ -42,7 +42,7 @@
         
         console.log('EntrenadorData:', persona); 
         
-        fetch('https://localhost:7007/api/Administrador/RegistrarEntrenador', { 
+        fetch('http://localhost:7007/api/Administrador/RegistrarEntrenador', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

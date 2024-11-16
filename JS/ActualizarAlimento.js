@@ -22,7 +22,7 @@ function ActualizarAlimento() {
         formData.append('id_categoria_alimento', id_categoria_alimento);
 
         // Realizar la solicitud fetch para actualizar el alimento
-        fetch('https://localhost:7007/api/Alimento/ActualizarAlimento', {
+        fetch('http://localhost:7007/api/Alimento/ActualizarAlimento', {
             method: 'POST',
             body: formData
         })
