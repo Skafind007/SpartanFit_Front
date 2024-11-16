@@ -1,5 +1,5 @@
 
-       
+let UsuarioData = [];       
 fetch('http://localhost:7007/api/Administrador/ListUsuarios')
 .then(response => {
     if (!response.ok) {

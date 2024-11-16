@@ -1,22 +1,27 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const id_plan_alimenticio = localStorage.getItem("id");
+    const id_plan_alimenticio = 6;
 
-    if (!id_plan_alimenticio) {
-        console.error("No se encontró el ID del plan alimenticio en localStorage");
-        return;
-    }
+   
+    console.log(id_plan_alimenticio);
 
     try {
+        console.log("Solicitando datos para el ID:", id_plan_alimenticio);
+
         const response = await fetch(`http://localhost:7007/api/PlanAlimenticio/DetallesPlanAlimenticio?id_plan_alimenticio=${id_plan_alimenticio}`);
-        if (!response.ok) throw new Error(`Error en la solicitud: ${response.statusText}`);
+        
+        if (!response.ok) throw new Error(`Error en la solicitud: ${response.status} ${response.statusText}`);
 
         const data = await response.json();
+
+        if (!data.plan || !data.alimentos) {
+            throw new Error("La respuesta de la API no tiene la estructura esperada.");
+        }
+
         const plan = data.plan;
         const alimentos = data.alimentos;
 
-       
+        // Mostrar datos del plan
         document.getElementById("diaPlan").innerText = ` ${plan.dia}`;
-
 
         // Mostrar alimentos
         const alimentosContainer = document.getElementById("alimentosContainer");
@@ -33,7 +38,8 @@ document.addEventListener("DOMContentLoaded", async () => {
             alimentosContainer.appendChild(alimentoElement);
         });
     } catch (error) {
-        console.error("Error al obtener los datos de la API:", error);
+        console.error("Error al obtener los datos de la API:", error.message);
+        console.error("Detalles:", error);
     }
 });
 
